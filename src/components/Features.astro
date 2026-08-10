@@ -23,37 +23,37 @@ const features = [
 ];
 ---
 
-<section id="features" class="container-page py-20 sm:py-28">
-  <div class="mb-12 max-w-2xl">
-    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+<section id="features" class="container-page py-14 sm:py-20 lg:py-28">
+  <div class="mb-8 sm:mb-12 max-w-2xl">
+    <h2 class="section-heading">
       为自部署 Agent 的开发者设计
     </h2>
-    <p class="mt-4 text-lg text-[var(--color-text-muted)]">
+    <p class="section-sub">
       你的 Agent 跑在 NAS / 服务器 / 桌面 Docker 上,手机就是最方便的遥控器。
     </p>
   </div>
 
-  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
+  <div class="grid gap-3 sm:gap-4 sm:grid-cols-2">
     {features.map((f) => (
       <article class="card card-hover group">
-        <div class="flex items-start gap-4">
-          <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[color-mix(in_oklab,var(--color-accent)_15%,transparent)] text-[var(--color-accent)] ring-1 ring-[color-mix(in_oklab,var(--color-accent)_25%,transparent)]">
+        <div class="flex items-start gap-3 sm:gap-4">
+          <span class="inline-flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-md bg-[color-mix(in_oklab,var(--color-accent)_15%,transparent)] text-[var(--color-accent)] ring-1 ring-[color-mix(in_oklab,var(--color-accent)_25%,transparent)]">
             {f.icon === "phone" && (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:h-5 sm:w-5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
             )}
             {f.icon === "plug" && (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:h-5 sm:w-5"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8z"/></svg>
             )}
             {f.icon === "feather" && (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.67 19a2 2 0 0 0 1.416-.586l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.4A2 2 0 0 0 4 11.17V17a2 2 0 0 0 2 2z"/><path d="M16 8 2 22"/><path d="M17.5 15H9"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:h-5 sm:w-5"><path d="M12.67 19a2 2 0 0 0 1.416-.586l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.4A2 2 0 0 0 4 11.17V17a2 2 0 0 0 2 2z"/><path d="M16 8 2 22"/><path d="M17.5 15H9"/></svg>
             )}
             {f.icon === "shield" && (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:h-5 sm:w-5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
             )}
           </span>
           <div class="min-w-0">
-            <h3 class="text-lg font-semibold">{f.title}</h3>
-            <p class="mt-1.5 text-sm leading-relaxed text-[var(--color-text-muted)]">
+            <h3 class="text-base font-semibold sm:text-lg">{f.title}</h3>
+            <p class="mt-1 sm:mt-1.5 text-sm leading-relaxed text-[var(--color-text-muted)]">
               {f.desc}
             </p>
           </div>

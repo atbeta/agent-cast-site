@@ -1,20 +1,20 @@
 ---
 ---
 
-<section id="download" class="container-page py-20 sm:py-28">
-  <div class="card relative overflow-hidden p-10 sm:p-14 glow">
+<section id="download" class="container-page py-14 sm:py-20 lg:py-28">
+  <div class="card relative overflow-hidden p-6 sm:p-10 lg:p-14 glow">
     <div class="absolute inset-0 grid-pattern opacity-30" aria-hidden="true"></div>
-    <div class="relative flex flex-col items-start gap-6 max-w-2xl">
+    <div class="relative flex flex-col items-start gap-5 sm:gap-6 max-w-2xl">
       <span class="badge badge-accent">v1.0.0 · 2026-08</span>
-      <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl text-balance">
+      <h2 class="text-balance text-2xl font-semibold tracking-tight sm:text-3xl lg:text-4xl">
         把 Agent 装进你的手机
       </h2>
-      <p class="text-lg text-[var(--color-text-muted)]">
+      <p class="text-base text-[var(--color-text-muted)] sm:text-lg">
         当前 v1.0.0 仅<strong class="font-medium text-[var(--color-text)]">手机形态</strong>侧载分发,平板支持已开放但暂不随手机包上架。AppGallery 审核中。
       </p>
 
-      <div class="mt-2 grid gap-3 sm:grid-cols-2 w-full max-w-xl">
-        <a href="#" class="btn-primary justify-start">
+      <div class="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2 w-full max-w-xl">
+        <a href="#" class="btn-primary justify-center sm:justify-start">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
             <polyline points="7 10 12 15 17 10" />
@@ -22,7 +22,7 @@
           </svg>
           侧载 APK
         </a>
-        <a href="#" class="btn-secondary justify-start">
+        <a href="#" class="btn-secondary justify-center sm:justify-start">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="2" y="3" width="20" height="14" rx="2" />
             <line x1="8" y1="21" x2="16" y2="21" />
@@ -32,15 +32,15 @@
         </a>
       </div>
 
-      <div class="mt-4 flex flex-col gap-1 text-sm text-[var(--color-text-muted)]">
-        <p>
-          <span class="font-mono text-xs">SHA-256</span> ·
-          <span class="font-mono text-xs text-[var(--color-text-subtle)] break-all">
-            签名证书: <span class="text-[var(--color-text-muted)]">填入 release HAP 实际指纹</span>
+      <div class="mt-2 flex flex-col gap-1 text-xs sm:text-sm text-[var(--color-text-muted)]">
+        <p class="break-all">
+          <span class="font-mono text-xs">签名</span> ·
+          <span class="font-mono text-xs text-[var(--color-text-subtle)]">
+            填入 release HAP 实际指纹
           </span>
         </p>
         <p>
-          <span class="font-mono text-xs">系统要求</span> ·
+          <span class="font-mono text-xs">系统</span> ·
           <span class="font-mono text-xs text-[var(--color-text-muted)]">HarmonyOS 5.0+ (API 12+)</span>
         </p>
       </div>

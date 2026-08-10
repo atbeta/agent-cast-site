@@ -8,30 +8,30 @@ const updated = "2026-08-10";
   title="隐私政策 · Agent Cast"
   description="Agent Cast 隐私政策:不收集个人信息,数据全本地,无云端服务、无追踪、无广告。"
 >
-  <section class="container-page pt-16 pb-10">
+  <section class="container-page pt-10 pb-6 sm:pt-16 sm:pb-10">
     <div class="flex flex-col gap-3 max-w-3xl">
-      <a href="/" class="btn-ghost self-start -ml-4 text-xs">
+      <a href="/" class="btn-ghost self-start -ml-2 text-xs">
         ← 返回首页
       </a>
       <div class="flex items-center gap-2">
         <span class="badge">最后更新</span>
         <span class="font-mono text-xs text-[var(--color-text-muted)]">{updated}</span>
       </div>
-      <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">隐私政策</h1>
-      <p class="text-lg text-[var(--color-text-muted)]">
+      <h1 class="text-3xl font-semibold tracking-tight sm:text-5xl">隐私政策</h1>
+      <p class="text-base text-[var(--color-text-muted)] sm:text-lg">
         简短版:<strong class="font-medium text-[var(--color-text)]">我们不收集任何个人信息。</strong>
         你的数据只存在你的手机和你自己的服务器之间。
       </p>
     </div>
   </section>
 
-  <article class="container-page pb-24">
-    <div class="mx-auto max-w-3xl space-y-12">
+  <article class="container-page pb-16 sm:pb-24">
+    <div class="mx-auto max-w-3xl space-y-10 sm:space-y-12">
       <!-- Section 1 -->
       <section>
-        <h2 class="text-xl font-semibold tracking-tight">一、我们收集什么</h2>
-        <div class="mt-4 card">
-          <p class="text-[var(--color-text-muted)] leading-relaxed">
+        <h2 class="text-lg font-semibold tracking-tight sm:text-xl">一、我们收集什么</h2>
+        <div class="mt-3 card sm:mt-4">
+          <p class="text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base">
             <strong class="text-[var(--color-text)]">我们不收集任何个人信息。</strong>
             本应用没有账号体系、没有统计分析、没有广告 SDK、没有崩溃上报渠道,开发者无法接触你的任何数据。
           </p>
@@ -40,8 +40,8 @@ const updated = "2026-08-10";
 
       <!-- Section 2 -->
       <section>
-        <h2 class="text-xl font-semibold tracking-tight">二、你的数据存放在哪里</h2>
-        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+        <h2 class="text-lg font-semibold tracking-tight sm:text-xl">二、你的数据存放在哪里</h2>
+        <p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)] sm:mt-4 sm:text-base">
           你添加的实例信息(名称、Endpoint 地址、访问 Token)、会话记录、聊天内容与偏好设置,
           <strong class="text-[var(--color-text)]">全部仅存储在你本机的应用沙箱内</strong>(HarmonyOS 首选项 / 关系型数据库),卸载应用即被系统删除。
         </p>
@@ -49,8 +49,8 @@ const updated = "2026-08-10";
 
       <!-- Section 3 -->
       <section>
-        <h2 class="text-xl font-semibold tracking-tight">三、网络访问说明</h2>
-        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+        <h2 class="text-lg font-semibold tracking-tight sm:text-xl">三、网络访问说明</h2>
+        <p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)] sm:mt-4 sm:text-base">
           本应用仅向你<strong class="text-[var(--color-text)]">自行填写</strong>的 Endpoint 地址发起网络请求(HTTP / WebSocket / SSE),用于与你自己的 Agent 服务通信。
           除你配置的地址外,本应用不会连接任何其他服务器,也不会把你的数据发送给开发者或任何第三方。
         </p>
@@ -65,13 +65,13 @@ const updated = "2026-08-10";
 
       <!-- Section 4 -->
       <section>
-        <h2 class="text-xl font-semibold tracking-tight">四、权限使用说明</h2>
+        <h2 class="text-lg font-semibold tracking-tight sm:text-xl">四、权限使用说明</h2>
         <div class="mt-4 overflow-hidden rounded-lg border border-[var(--color-border)]">
           <table class="w-full text-sm">
             <thead>
               <tr class="border-b border-[var(--color-border)] bg-[var(--color-bg-elevated)]">
-                <th class="px-4 py-3 text-left font-medium text-[var(--color-text-muted)]">权限</th>
-                <th class="px-4 py-3 text-left font-medium text-[var(--color-text-muted)]">用途</th>
+                <th class="px-3 py-2.5 text-left font-medium text-[var(--color-text-muted)] sm:px-4 sm:py-3 whitespace-nowrap">权限</th>
+                <th class="px-3 py-2.5 text-left font-medium text-[var(--color-text-muted)] sm:px-4 sm:py-3">用途</th>
               </tr>
             </thead>
             <tbody>
@@ -90,14 +90,14 @@ const updated = "2026-08-10";
                 },
               ].map((p) => (
                 <tr class="border-b border-[var(--color-border)] last:border-0">
-                  <td class="px-4 py-3 font-mono text-xs">{p.name}</td>
-                  <td class="px-4 py-3 text-[var(--color-text-muted)]">{p.desc}</td>
+                  <td class="px-3 py-2.5 font-mono text-xs sm:px-4 sm:py-3 align-top whitespace-nowrap">{p.name}</td>
+                  <td class="px-3 py-2.5 text-[var(--color-text-muted)] sm:px-4 sm:py-3 text-sm">{p.desc}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p class="mt-4 text-sm text-[var(--color-text-muted)] leading-relaxed">
+        <p class="mt-4 text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base">
           本应用<strong class="text-[var(--color-text)]">不申请</strong>定位、通讯录、相册、麦克风、相机(拍照)等任何敏感权限。
           你从相册选择图片发送给 Agent 时,使用的是系统安全 Picker,本应用不持有相册权限,仅能读取你主动选择的那一张图片。
         </p>
@@ -105,16 +105,16 @@ const updated = "2026-08-10";
 
       <!-- Section 5 -->
       <section>
-        <h2 class="text-xl font-semibold tracking-tight">五、信息的共享与披露</h2>
-        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+        <h2 class="text-lg font-semibold tracking-tight sm:text-xl">五、信息的共享与披露</h2>
+        <p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)] sm:mt-4 sm:text-base">
           <strong class="text-[var(--color-text)]">不存在。</strong>你的数据不离开你的设备与你自己的服务器,我们无从共享。
         </p>
       </section>
 
       <!-- Section 6 -->
       <section>
-        <h2 class="text-xl font-semibold tracking-tight">六、数据安全</h2>
-        <ul class="mt-4 space-y-2 text-[var(--color-text-muted)] leading-relaxed">
+        <h2 class="text-lg font-semibold tracking-tight sm:text-xl">六、数据安全</h2>
+        <ul class="mt-3 space-y-2 text-sm leading-relaxed text-[var(--color-text-muted)] sm:mt-4 sm:text-base">
           <li class="flex gap-2"><span class="text-[var(--color-accent)]">·</span>实例 Token 存储于系统提供的安全存储区域</li>
           <li class="flex gap-2"><span class="text-[var(--color-accent)]">·</span>建议你为自己的 Agent 服务设置强 Token,并避免在不可信网络中使用明文协议</li>
         </ul>
@@ -122,29 +122,29 @@ const updated = "2026-08-10";
 
       <!-- Section 7 -->
       <section>
-        <h2 class="text-xl font-semibold tracking-tight">七、未成年保护</h2>
-        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+        <h2 class="text-lg font-semibold tracking-tight sm:text-xl">七、未成年保护</h2>
+        <p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)] sm:mt-4 sm:text-base">
           本应用为工具软件,不面向未成年人提供服务,亦不主动收集任何年龄段用户的信息。
         </p>
       </section>
 
       <!-- Section 8 -->
       <section>
-        <h2 class="text-xl font-semibold tracking-tight">八、政策更新</h2>
-        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+        <h2 class="text-lg font-semibold tracking-tight sm:text-xl">八、政策更新</h2>
+        <p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)] sm:mt-4 sm:text-base">
           如本政策发生变更,我们会在应用内「设置 → 关于」中更新版本与日期。
         </p>
       </section>
 
       <!-- Section 9 -->
       <section>
-        <h2 class="text-xl font-semibold tracking-tight">九、联系我们</h2>
-        <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+        <h2 class="text-lg font-semibold tracking-tight sm:text-xl">九、联系我们</h2>
+        <p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)] sm:mt-4 sm:text-base">
           对本隐私政策有任何疑问,可通过应用商店本应用页面提供的联系方式与我们取得联系。
         </p>
       </section>
 
-      <div class="border-t border-[var(--color-border)] pt-8">
+      <div class="border-t border-[var(--color-border)] pt-6 sm:pt-8">
         <a href="/" class="btn-secondary">← 返回首页</a>
       </div>
     </div>
@@ -156,7 +156,7 @@ const updated = "2026-08-10";
 
   .callout {
     @apply rounded-lg border border-[color-mix(in_oklab,var(--color-warn)_30%,var(--color-border))]
-           bg-[color-mix(in_oklab,var(--color-warn)_8%,var(--color-bg-card))] p-4;
+           bg-[color-mix(in_oklab,var(--color-warn)_8%,var(--color-bg-card))] p-3 sm:p-4;
   }
   .callout code {
     @apply rounded bg-[var(--color-bg-elevated)] px-1.5 py-0.5 text-[0.85em];
