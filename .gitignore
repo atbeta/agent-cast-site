@@ -29,3 +29,6 @@ pnpm-debug.log*
 # Local preview screenshots (for development only)
 screenshots-preview/
 .vercel
+-e 
+# Local preview screenshots (v2)
+screenshots-v2/
