@@ -1,0 +1,308 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const sections = [
+  { id: "install", title: "安装" },
+  { id: "first-agent", title: "连接第一个 Agent" },
+  { id: "hermes", title: "Hermes" },
+  { id: "opencode", title: "OpenCode" },
+  { id: "openclaw", title: "OpenClaw" },
+  { id: "faq", title: "常见问题" },
+  { id: "troubleshoot", title: "故障排查" },
+];
+---
+
+<Layout
+  title="使用指南 · Agent Cast"
+  description="Agent Cast 安装与配置指南:连接 Hermes、OpenCode、OpenClaw 多 Agent 桌面遥控器,常见问题与故障排查。"
+>
+  <section class="container-page pt-16 pb-10">
+    <div class="flex flex-col gap-3">
+      <a href="/" class="btn-ghost self-start -ml-4 text-xs">
+        ← 返回首页
+      </a>
+      <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">使用指南</h1>
+      <p class="max-w-2xl text-lg text-[var(--color-text-muted)]">
+        从下载到跑通第一个 Agent,大概 10 分钟。涉及服务端配置的地方都给出最简链路。
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page pb-20">
+    <div class="grid gap-12 lg:grid-cols-[220px_1fr]">
+      <!-- TOC -->
+      <aside class="lg:sticky lg:top-20 lg:self-start">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-subtle)]">
+          目录
+        </p>
+        <nav class="space-y-0.5 text-sm">
+          {sections.map((s) => (
+            <a
+              href={`#${s.id}`}
+              class="block rounded-md px-3 py-1.5 text-[var(--color-text-muted)] hover:bg-[var(--color-bg-elevated)] hover:text-[var(--color-text)]"
+            >
+              {s.title}
+            </a>
+          ))}
+        </nav>
+      </aside>
+
+      <!-- Content -->
+      <article class="prose-agent-cast max-w-3xl space-y-20">
+        <!-- Install -->
+        <section id="install">
+          <h2 class="text-2xl font-semibold tracking-tight">安装</h2>
+          <p class="mt-3 text-[var(--color-text-muted)]">
+            Agent Cast 当前<strong class="font-medium text-[var(--color-text)]">仅 HarmonyOS 5.0+ (API 12+)</strong>。安装有两种方式:
+          </p>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            <div class="card">
+              <div class="flex items-center gap-2">
+                <span class="badge badge-accent">推荐</span>
+                <h3 class="font-medium">侧载 APK</h3>
+              </div>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+                下载签名 HAP 后用 DevEco 或华为手机「文件管理」安装。无需商店审核,随时跟最新版。
+              </p>
+            </div>
+            <div class="card">
+              <h3 class="font-medium">AppGallery</h3>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+                审核中,正式上架后开放。
+              </p>
+            </div>
+          </div>
+
+          <ol class="mt-6 space-y-3 text-sm text-[var(--color-text-muted)]">
+            <li>
+              <span class="font-mono text-xs text-[var(--color-text-subtle)]">1.</span>
+              从 <a href="#download" class="text-[var(--color-accent)] hover:underline">下载页</a> 获取 v1.0.0 HAP 文件。
+            </li>
+            <li>
+              <span class="font-mono text-xs text-[var(--color-text-subtle)]">2.</span>
+              发送到手机(微信/网盘/USB 都行),点击 HAP 文件触发安装。
+            </li>
+            <li>
+              <span class="font-mono text-xs text-[var(--color-text-subtle)]">3.</span>
+              首次启动授予「网络」「文件访问」权限,即可进入主页。
+            </li>
+          </ol>
+        </section>
+
+        <!-- First agent -->
+        <section id="first-agent">
+          <h2 class="text-2xl font-semibold tracking-tight">连接第一个 Agent</h2>
+          <p class="mt-3 text-[var(--color-text-muted)]">
+            App 只做<strong class="font-medium text-[var(--color-text)]">标准 HTTPS / WSS 客户端</strong>。无论哪个 Agent,流程都一样:
+          </p>
+
+          <ol class="mt-6 space-y-4 text-sm">
+            {[
+              { n: 1, t: "在桌面 / 服务器上启动 Agent 服务" },
+              { n: 2, t: "确保手机能访问到(同局域网 / Tailscale / cloudflared quick tunnel)" },
+              { n: 3, t: "在 App「Agents」页点 +,填入 endpoint 与凭证" },
+              { n: 4, t: "在「Sessions」发起对话" },
+            ].map((s) => (
+              <li class="flex gap-4">
+                <span class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-bg-elevated)] border border-[var(--color-border)] text-xs font-mono">
+                  {s.n}
+                </span>
+                <span class="text-[var(--color-text-muted)] pt-0.5">{s.t}</span>
+              </li>
+            ))}
+          </ol>
+
+          <div class="mt-6 callout">
+            <p class="text-sm">
+              <strong class="text-[var(--color-text)]">💡 桌面侧的公网入口怎么搞?</strong><br />
+              最省心的是内嵌 <span class="font-mono text-xs">cloudflared quick tunnel</span>(免登录,一次性域名)。
+              或者 frp / Tailscale 都行。App 端代码无需改动,只填最终可直达的 URL。
+            </p>
+          </div>
+        </section>
+
+        <!-- Hermes -->
+        <section id="hermes">
+          <h2 class="text-2xl font-semibold tracking-tight">Hermes</h2>
+          <p class="mt-3 text-[var(--color-text-muted)]">
+            Hermes Agent 提供 OpenAI 兼容的 <span class="font-mono text-xs">/v1</span> 端点 + SSE 流式。直连即可。
+          </p>
+
+          <h3 class="mt-8 text-lg font-semibold">服务端</h3>
+          <p class="mt-2 text-sm text-[var(--color-text-muted)]">
+            启动 Hermes API Server,记录 <span class="font-mono text-xs">API_SERVER_KEY</span>。
+          </p>
+
+          <h3 class="mt-6 text-lg font-semibold">App 端配置</h3>
+          <div class="mt-3 card font-mono text-xs">
+            <div class="grid gap-2">
+              <div><span class="text-[var(--color-text-subtle)]">Endpoint</span> · <span class="text-[var(--color-accent)]">https://your-host</span></div>
+              <div><span class="text-[var(--color-text-subtle)]">API Key</span> · <span class="text-[var(--color-text-muted)]">粘贴你的 API_SERVER_KEY</span></div>
+              <div><span class="text-[var(--color-text-subtle)]">Agent Kind</span> · <span class="text-[var(--color-text-muted)]">Hermes (OpenAI 兼容)</span></div>
+            </div>
+          </div>
+
+          <p class="mt-6 text-sm text-[var(--color-text-muted)]">
+            M1.5 阶段支持 <strong class="text-[var(--color-text)]">思考过程显示</strong> + <strong class="text-[var(--color-text)]">审批按钮</strong> + <strong class="text-[var(--color-text)]">服务端中断</strong>。
+          </p>
+        </section>
+
+        <!-- OpenCode -->
+        <section id="opencode">
+          <h2 class="text-2xl font-semibold tracking-tight">OpenCode</h2>
+          <p class="mt-3 text-[var(--color-text-muted)]">
+            OpenCode v2 提供 <span class="font-mono text-xs">/global/event</span> SSE 真流式主路径,断线时回退到轮询。集成度仅次于 Hermes。
+          </p>
+
+          <h3 class="mt-8 text-lg font-semibold">服务端</h3>
+          <div class="mt-3 card font-mono text-xs">
+            <div class="text-[var(--color-text-subtle)] mb-1">$</div>
+            <div>opencode serve --port 14096 --hostname 0.0.0.0</div>
+          </div>
+
+          <h3 class="mt-6 text-lg font-semibold">App 端配置</h3>
+          <div class="mt-3 card font-mono text-xs">
+            <div class="grid gap-2">
+              <div><span class="text-[var(--color-text-subtle)]">Endpoint</span> · <span class="text-[var(--color-accent)]">http://your-host:14096</span></div>
+              <div><span class="text-[var(--color-text-subtle)]">Auth</span> · <span class="text-[var(--color-text-muted)]">opencode basic auth (可选)</span></div>
+              <div><span class="text-[var(--color-text-subtle)]">Agent Kind</span> · <span class="text-[var(--color-text-muted)]">OpenCode</span></div>
+            </div>
+          </div>
+
+          <p class="mt-6 text-sm text-[var(--color-text-muted)]">
+            特色能力:<strong class="text-[var(--color-text)]">项目文件浏览</strong> + <strong class="text-[var(--color-text)]">DiffSheet 回合级改动查看</strong>。
+          </p>
+        </section>
+
+        <!-- OpenClaw -->
+        <section id="openclaw">
+          <h2 class="text-2xl font-semibold tracking-tight">OpenClaw</h2>
+          <p class="mt-3 text-[var(--color-text-muted)]">
+            OpenClaw 是 <strong class="text-[var(--color-text)]">Gateway WebSocket (JSON-RPC 2.0)</strong> 协议,默认端口 <span class="font-mono text-xs">18789</span>。当前 Adapter Phase 1 已完成,完整集成在 M2 阶段。
+          </p>
+
+          <h3 class="mt-8 text-lg font-semibold">前置</h3>
+          <ul class="mt-3 space-y-1.5 text-sm text-[var(--color-text-muted)]">
+            <li class="flex gap-2"><span class="text-[var(--color-accent)]">·</span>本地 OpenClaw Gateway 已启动并配置 token / password</li>
+            <li class="flex gap-2"><span class="text-[var(--color-accent)]">·</span>Gateway 绑定 <span class="font-mono text-xs">--bind lan</span> 或经 Tailscale / SSH 隧道可达</li>
+            <li class="flex gap-2"><span class="text-[var(--color-accent)]">·</span>准备好 hello-ok / snapshot 验证手段</li>
+          </ul>
+
+          <div class="mt-6 callout">
+            <p class="text-sm">
+              <strong class="text-[var(--color-text)]">⚠️ 移动端限制</strong><br />
+              OpenClaw 事件<strong>不重放</strong>。重连后必须主动 <span class="font-mono text-xs">health</span> / <span class="font-mono text-xs">presence</span> 刷新。
+              手机端不暴露 fs/* 类工具(防 agent 误碰)。
+            </p>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq">
+          <h2 class="text-2xl font-semibold tracking-tight">常见问题</h2>
+
+          <div class="mt-6 space-y-4">
+            {[
+              {
+                q: "为什么不做 IM?",
+                a: "钉钉/飞书那种聊天轮询会拖累鸿蒙后台。Agent 跑在桌面,App 只在用户想遥控时启动,断线重连即恢复,这是设计红利。",
+              },
+              {
+                q: "我的 Agent 协议 App 不支持怎么办?",
+                a: "写一个 <code class=\"font-mono text-xs\">AgentAdapter</code> 实现 <code class=\"font-mono text-xs\">AgentContracts</code> 接口,注册到 <code class=\"font-mono text-xs\">ConnectionManager</code>。这是 M3 之后的官方扩展位。",
+              },
+              {
+                q: "Token 存在哪里?",
+                a: "Asset Store Kit (系统密钥库) + HUKS AES-GCM 加密,明文不落盘。卸载 App 即全部销毁。",
+              },
+              {
+                q: "App 会上传我的对话内容吗?",
+                a: "不会。所有数据走本地 RelationalStore,App 无任何云端 endpoint。详见隐私政策。",
+              },
+            ].map((item) => (
+              <details class="group rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] open:bg-[var(--color-bg-elevated)]">
+                <summary class="cursor-pointer p-4 font-medium flex items-center justify-between">
+                  <span>{item.q}</span>
+                  <svg class="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </summary>
+                <div class="px-4 pb-4 text-sm text-[var(--color-text-muted)] leading-relaxed" set:html={item.a} />
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <!-- Troubleshoot -->
+        <section id="troubleshoot">
+          <h2 class="text-2xl font-semibold tracking-tight">故障排查</h2>
+
+          <div class="mt-6 space-y-3">
+            {[
+              {
+                tag: "网络",
+                title: "连接显示「unauthorized」",
+                fix: "检查 endpoint 对应的 API key / token 是否正确粘贴。OpenClaw 场景确认 gateway.auth.token 与 Gateway 启动时一致。",
+              },
+              {
+                tag: "网络",
+                title: "能连接但收不到流式响应",
+                fix: "检查反向代理是否缓冲 SSE。Nginx 加 proxy_buffering off;Cloudflare Workers 注意 streaming 配置。",
+              },
+              {
+                tag: "OpenCode",
+                title: "提问卡看不到 / 回合不结束",
+                fix: "这是 OpenCode v2 适配器已知修复点(v1.0.0 已修)。若自行 build,确认 OpenCodeAdapter.ets 在 230+ 行版本。",
+              },
+              {
+                tag: "HarmonyOS",
+                title: "后台被杀导致连接断开",
+                fix: "v1.0.0 已加「后台长时任务」+「回合完成系统通知」。若仍被杀,检查「应用启动管理」是否限制了 Agent Cast。",
+              },
+            ].map((item) => (
+              <div class="card flex gap-4">
+                <span class="badge badge-accent shrink-0">{item.tag}</span>
+                <div class="min-w-0">
+                  <p class="font-medium">{item.title}</p>
+                  <p class="mt-1.5 text-sm text-[var(--color-text-muted)] leading-relaxed">{item.fix}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Download CTA at bottom -->
+        <section id="download" class="card glow p-8 text-center">
+          <h2 class="text-2xl font-semibold tracking-tight">准备好了吗?</h2>
+          <p class="mt-2 text-[var(--color-text-muted)]">下载 v1.0.0,10 分钟跑通第一个 Agent。</p>
+          <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <a href="#" class="btn-primary">
+              下载 APK
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </a>
+            <a href="/" class="btn-secondary">返回首页</a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @reference "../styles/global.css";
+
+  .callout {
+    @apply rounded-lg border border-[color-mix(in_oklab,var(--color-accent)_25%,var(--color-border))]
+           bg-[color-mix(in_oklab,var(--color-accent)_8%,var(--color-bg-card))] p-4;
+  }
+  .prose-agent-cast :global(code) {
+    @apply rounded bg-[var(--color-bg-elevated)] px-1.5 py-0.5 text-[0.85em];
+  }
+  .prose-agent-cast :global(code::before),
+  .prose-agent-cast :global(code::after) {
+    content: "" !important;
+  }
+</style>

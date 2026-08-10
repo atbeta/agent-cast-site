@@ -1,0 +1,69 @@
+---
+const screenshots = [
+  { title: "会话列表", subtitle: "按实例筛选 + 状态标签" },
+  { title: "聊天界面", subtitle: "流式输出 + 思考过程" },
+  { title: "工具调用", subtitle: "可视化执行轨迹" },
+  { title: "审批中心", subtitle: "Agent 动作等你拍板" },
+  { title: "文件浏览", subtitle: "项目文件 + 搜索" },
+  { title: "Diff 查看", subtitle: "回合级代码改动" },
+];
+---
+
+<section id="screenshots" class="container-page py-20 sm:py-28">
+  <div class="mb-12 max-w-2xl">
+    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+      看得见的 Agent 操作
+    </h2>
+    <p class="mt-4 text-lg text-[var(--color-text-muted)]">
+      不是 IM,是真正的 Agent 遥控器 — 看它在想什么、看它在做什么、看它改了什么。
+    </p>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {screenshots.map((s, i) => (
+      <figure class="card card-hover group overflow-hidden p-0">
+        <div class="relative aspect-[9/19] bg-gradient-to-br from-[var(--color-bg-elevated)] to-[var(--color-bg)] overflow-hidden">
+          <!-- Phone frame -->
+          <div class="absolute inset-4 rounded-[24px] border border-[var(--color-border-strong)] bg-[var(--color-bg)] overflow-hidden shadow-[0_8px_32px_-12px_rgba(0,125,255,0.25)]">
+            <!-- Status bar -->
+            <div class="flex items-center justify-between px-3 py-1.5 text-[8px] text-[var(--color-text-subtle)]">
+              <span>9:41</span>
+              <span class="font-mono">Agent Cast</span>
+              <span>100%</span>
+            </div>
+            <!-- Content placeholder pattern -->
+            <div class="px-3 space-y-1.5 mt-1">
+              <div class="h-1.5 rounded bg-[var(--color-accent)] opacity-30" style={`width: ${50 + (i * 7) % 40}%`}></div>
+              <div class="h-1 rounded bg-[var(--color-border)]" style={`width: ${70 + (i * 5) % 25}%`}></div>
+              <div class="h-1 rounded bg-[var(--color-border)]" style={`width: ${40 + (i * 11) % 50}%`}></div>
+            </div>
+            <div class="mt-3 px-3 space-y-1.5">
+              <div class="rounded-md bg-[var(--color-bg-elevated)] border border-[var(--color-border)] p-2">
+                <div class="h-1 rounded bg-[var(--color-accent)] opacity-40 w-3/4"></div>
+                <div class="mt-1 h-1 rounded bg-[var(--color-border-strong)] w-full"></div>
+                <div class="mt-1 h-1 rounded bg-[var(--color-border-strong)] w-2/3"></div>
+              </div>
+              <div class="rounded-md bg-[color-mix(in_oklab,var(--color-accent)_8%,transparent)] border border-[color-mix(in_oklab,var(--color-accent)_20%,transparent)] p-2">
+                <div class="h-1 rounded bg-[var(--color-accent)] opacity-50 w-full"></div>
+                <div class="mt-1 h-1 rounded bg-[var(--color-accent)] opacity-30 w-5/6"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hover overlay -->
+          <div class="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+            <span class="badge mb-4 backdrop-blur">预览占位</span>
+          </div>
+        </div>
+        <figcaption class="border-t border-[var(--color-border)] p-4">
+          <p class="font-medium">{s.title}</p>
+          <p class="mt-1 text-sm text-[var(--color-text-muted)]">{s.subtitle}</p>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+
+  <p class="mt-8 text-center text-sm text-[var(--color-text-subtle)]">
+    截图占位 · 正式截图替换请联系 <a href="https://github.com/atbeta/agent-cast/issues" class="text-[var(--color-accent)] hover:underline">GitHub Issues</a>
+  </p>
+</section>

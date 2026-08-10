@@ -1,0 +1,85 @@
+---
+const agents = [
+  {
+    name: "Hermes",
+    protocol: "OpenAI 兼容 + SSE",
+    status: "stable",
+    note: "M1.5 进行中 — 思考过程 + 审批按钮 + 服务端中断",
+    href: "/guide#hermes",
+  },
+  {
+    name: "OpenCode",
+    protocol: "/global/event SSE",
+    status: "stable",
+    note: "真流式主路径 — 断线回退轮询,Diff 文件级查看",
+    href: "/guide#opencode",
+  },
+  {
+    name: "OpenClaw",
+    protocol: "Gateway WebSocket",
+    status: "wip",
+    note: "Phase 1 WsTransport 已完成 — 25s 心跳 + header 认证",
+    href: "/guide#openclaw",
+  },
+  {
+    name: "A2A",
+    protocol: "HTTP binding",
+    status: "planned",
+    note: "远期规划 — 借鸿蒙小艺开放平台接入",
+    href: null,
+  },
+];
+
+const statusLabel: Record<string, { text: string; cls: string }> = {
+  stable: { text: "已实装", cls: "badge-ok" },
+  wip: { text: "开发中", cls: "badge-warn" },
+  planned: { text: "远期", cls: "badge" },
+};
+---
+
+<section id="agents" class="container-page py-20 sm:py-28">
+  <div class="mb-12 max-w-2xl">
+    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+      支持的 Agent
+    </h2>
+    <p class="mt-4 text-lg text-[var(--color-text-muted)]">
+      通过<strong class="font-medium text-[var(--color-text)]">归一化事件模型 + 适配器</strong>接入,后续扩展新 Agent 只需新增一个适配器。
+    </p>
+  </div>
+
+  <div class="overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)]">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-[var(--color-border)] bg-[var(--color-bg-elevated)]">
+            <th class="px-5 py-3 text-left font-medium text-[var(--color-text-muted)]">Agent</th>
+            <th class="px-5 py-3 text-left font-medium text-[var(--color-text-muted)]">传输协议</th>
+            <th class="px-5 py-3 text-left font-medium text-[var(--color-text-muted)]">状态</th>
+            <th class="px-5 py-3 text-left font-medium text-[var(--color-text-muted)]">备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          {agents.map((a) => {
+            const s = statusLabel[a.status];
+            return (
+              <tr class="border-b border-[var(--color-border)] last:border-0 transition-colors hover:bg-[var(--color-bg-elevated)]">
+                <td class="px-5 py-4">
+                  {a.href ? (
+                    <a href={a.href} class="font-medium hover:text-[var(--color-accent)]">{a.name}</a>
+                  ) : (
+                    <span class="font-medium">{a.name}</span>
+                  )}
+                </td>
+                <td class="px-5 py-4 font-mono text-xs text-[var(--color-text-muted)]">{a.protocol}</td>
+                <td class="px-5 py-4">
+                  <span class:list={["badge", s.cls]}>{s.text}</span>
+                </td>
+                <td class="px-5 py-4 text-[var(--color-text-muted)]">{a.note}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

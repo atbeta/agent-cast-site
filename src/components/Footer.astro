@@ -1,0 +1,52 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[var(--color-border)] mt-24">
+  <div class="container-page py-12">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-2">
+        <a href="/" class="flex items-center gap-2 font-semibold">
+          <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-[var(--color-accent)] text-white">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 8.82a15 15 0 0 1 20 0" />
+              <path d="M5 12.86a10 10 0 0 1 14 0" />
+              <path d="M8.5 16.43a5 5 0 0 1 7 0" />
+              <circle cx="12" cy="20" r="1.5" fill="currentColor" stroke="none" />
+            </svg>
+          </span>
+          <span>Agent Cast</span>
+        </a>
+        <p class="mt-3 max-w-sm text-sm text-[var(--color-text-muted)]">
+          HarmonyOS 原生「桌面 Agent 遥控器」。一个 App 管 Hermes / OpenCode / OpenClaw,手机即遥控器。
+        </p>
+        <p class="mt-4 text-xs text-[var(--color-text-subtle)]">
+          数据全本地,无云端服务,无追踪。
+        </p>
+      </div>
+
+      <div>
+        <h3 class="mb-3 text-sm font-semibold">产品</h3>
+        <ul class="space-y-2 text-sm text-[var(--color-text-muted)]">
+          <li><a href="/guide" class="hover:text-[var(--color-text)]">使用指南</a></li>
+          <li><a href="/guide#download" class="hover:text-[var(--color-text)]">下载</a></li>
+          <li><a href="/changelog" class="hover:text-[var(--color-text)]">更新日志</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="mb-3 text-sm font-semibold">资源</h3>
+        <ul class="space-y-2 text-sm text-[var(--color-text-muted)]">
+          <li><a href="https://github.com/atbeta/agent-cast" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-text)]">GitHub 仓库</a></li>
+          <li><a href="/privacy" class="hover:text-[var(--color-text)]">隐私政策</a></li>
+          <li><a href="https://github.com/atbeta/agent-cast/issues" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-text)]">反馈问题</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-3 border-t border-[var(--color-border)] pt-6 text-xs text-[var(--color-text-subtle)] sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} Beta · Agent Cast · Made with care for HarmonyOS</p>
+      <p class="font-mono">v1.0.0 · HarmonyOS 5.0+ (API 12+)</p>
+    </div>
+  </div>
+</footer>

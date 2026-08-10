@@ -1,0 +1,139 @@
+---
+---
+
+<section id="architecture" class="container-page py-20 sm:py-28">
+  <div class="mb-12 max-w-2xl">
+    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+      架构总览
+    </h2>
+    <p class="mt-4 text-lg text-[var(--color-text-muted)]">
+      App 只讲一种<strong class="font-medium text-[var(--color-text)]">归一化协议</strong>,适配器不进入 App —
+      各 Agent 的私有协议差异被隔离在适配器或桥接层,协议升级不动 App。
+    </p>
+  </div>
+
+  <div class="card overflow-hidden p-0">
+    <svg
+      viewBox="0 0 880 480"
+      class="w-full h-auto"
+      role="img"
+      aria-label="Agent Cast 架构图"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="currentColor" />
+        </marker>
+        <linearGradient id="accent-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="var(--color-accent)" stop-opacity="0.18" />
+          <stop offset="100%" stop-color="var(--color-accent)" stop-opacity="0.04" />
+        </linearGradient>
+      </defs>
+
+      <!-- App container -->
+      <rect x="20" y="20" width="840" height="200" rx="14" fill="url(#accent-grad)" stroke="var(--color-accent)" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="6 4" />
+      <text x="40" y="44" fill="var(--color-text-muted)" font-size="12" font-family="var(--font-mono)">HarmonyOS App · Agent Cast</text>
+
+      <!-- Page layer -->
+      <rect x="40" y="60" width="180" height="140" rx="8" fill="var(--color-bg-elevated)" stroke="var(--color-border)" />
+      <text x="130" y="84" fill="var(--color-text)" font-size="13" text-anchor="middle" font-weight="600">页面层</text>
+      <text x="130" y="104" fill="var(--color-text-muted)" font-size="11" text-anchor="middle" font-family="var(--font-mono)">ArkUI</text>
+      <text x="130" y="130" fill="var(--color-text-muted)" font-size="10" text-anchor="middle">Chat / Sessions</text>
+      <text x="130" y="148" fill="var(--color-text-muted)" font-size="10" text-anchor="middle">Agents / Settings</text>
+
+      <!-- ViewModel layer -->
+      <rect x="240" y="60" width="160" height="140" rx="8" fill="var(--color-bg-elevated)" stroke="var(--color-border)" />
+      <text x="320" y="84" fill="var(--color-text)" font-size="13" text-anchor="middle" font-weight="600">视图模型</text>
+      <text x="320" y="104" fill="var(--color-text-muted)" font-size="11" text-anchor="middle" font-family="var(--font-mono)">@ObservedV2</text>
+      <text x="320" y="130" fill="var(--color-text-muted)" font-size="10" text-anchor="middle">ChatViewModel</text>
+      <text x="320" y="148" fill="var(--color-text-muted)" font-size="10" text-anchor="middle">FilesViewModel</text>
+
+      <!-- Domain model -->
+      <rect x="420" y="60" width="160" height="140" rx="8" fill="var(--color-bg-elevated)" stroke="var(--color-border)" />
+      <text x="500" y="84" fill="var(--color-text)" font-size="13" text-anchor="middle" font-weight="600">归一化事件</text>
+      <text x="500" y="104" fill="var(--color-text-muted)" font-size="11" text-anchor="middle" font-family="var(--font-mono)">StreamEvent</text>
+      <text x="500" y="130" fill="var(--color-text-muted)" font-size="10" text-anchor="middle">Session / Message</text>
+      <text x="500" y="148" fill="var(--color-text-muted)" font-size="10" text-anchor="middle">ToolCall / Approval</text>
+
+      <!-- ConnectionManager -->
+      <rect x="600" y="60" width="240" height="140" rx="8" fill="var(--color-bg-card)" stroke="var(--color-accent)" stroke-opacity="0.5" />
+      <text x="720" y="84" fill="var(--color-accent)" font-size="13" text-anchor="middle" font-weight="600">ConnectionManager</text>
+      <text x="720" y="104" fill="var(--color-text-muted)" font-size="11" text-anchor="middle">Profile 路由 · 重连 · 事件分发</text>
+      <text x="720" y="130" fill="var(--color-text-muted)" font-size="10" text-anchor="middle" font-family="var(--font-mono)">kind → adapter 注册表</text>
+      <text x="720" y="148" fill="var(--color-text-muted)" font-size="10" text-anchor="middle">指数退避 · HUKS Token</text>
+
+      <!-- Arrows between App layers -->
+      <line x1="220" y1="130" x2="240" y2="130" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)" />
+      <line x1="400" y1="130" x2="420" y2="130" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)" />
+      <line x1="580" y1="130" x2="600" y2="130" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)" />
+
+      <!-- Transports row inside App -->
+      <rect x="40" y="220" width="380" height="60" rx="8" fill="var(--color-bg-elevated)" stroke="var(--color-border)" />
+      <text x="60" y="244" fill="var(--color-text)" font-size="12" font-weight="600">传输层</text>
+      <text x="120" y="264" fill="var(--color-text-muted)" font-size="11" font-family="var(--font-mono)">SSE · WebSocket · HTTP</text>
+
+      <rect x="440" y="220" width="200" height="60" rx="8" fill="var(--color-bg-elevated)" stroke="var(--color-border)" />
+      <text x="540" y="244" fill="var(--color-text)" font-size="12" text-anchor="middle" font-weight="600">适配器</text>
+      <text x="540" y="264" fill="var(--color-text-muted)" font-size="10" text-anchor="middle" font-family="var(--font-mono)">OpenAI / OpenCode / OpenClaw</text>
+
+      <rect x="660" y="220" width="180" height="60" rx="8" fill="var(--color-bg-elevated)" stroke="var(--color-border)" />
+      <text x="750" y="244" fill="var(--color-text)" font-size="12" text-anchor="middle" font-weight="600">持久化</text>
+      <text x="750" y="264" fill="var(--color-text-muted)" font-size="10" text-anchor="middle" font-family="var(--font-mono)">RelationalStore · HUKS</text>
+
+      <!-- arrow down from ConnectionManager to transports -->
+      <line x1="720" y1="200" x2="720" y2="220" stroke="currentColor" stroke-width="1.2" marker-end="url(#arr)" />
+
+      <!-- External endpoints -->
+      <text x="40" y="320" fill="var(--color-text-muted)" font-size="12" font-family="var(--font-mono)">桌面 / 服务器 · 自部署 Agent</text>
+
+      <!-- Hermes -->
+      <rect x="40" y="340" width="220" height="80" rx="10" fill="var(--color-bg-card)" stroke="var(--color-border-strong)" />
+      <text x="150" y="364" fill="var(--color-text)" font-size="13" text-anchor="middle" font-weight="600">Hermes</text>
+      <text x="150" y="384" fill="var(--color-text-muted)" font-size="10" text-anchor="middle">API Server · OpenAI 兼容</text>
+      <text x="150" y="402" fill="var(--color-text-muted)" font-size="10" text-anchor="middle" font-family="var(--font-mono)">/v1 + SSE</text>
+      <line x1="150" y1="280" x2="150" y2="340" stroke="var(--color-ok)" stroke-width="1.5" marker-end="url(#arr)" />
+
+      <!-- OpenCode -->
+      <rect x="280" y="340" width="220" height="80" rx="10" fill="var(--color-bg-card)" stroke="var(--color-border-strong)" />
+      <text x="390" y="364" fill="var(--color-text)" font-size="13" text-anchor="middle" font-weight="600">OpenCode</text>
+      <text x="390" y="384" fill="var(--color-text-muted)" font-size="10" text-anchor="middle">opencode serve</text>
+      <text x="390" y="402" fill="var(--color-text-muted)" font-size="10" text-anchor="middle" font-family="var(--font-mono)">/global/event SSE</text>
+      <line x1="390" y1="280" x2="390" y2="340" stroke="var(--color-ok)" stroke-width="1.5" marker-end="url(#arr)" />
+
+      <!-- Bridge container for OpenClaw -->
+      <rect x="520" y="340" width="220" height="80" rx="10" fill="var(--color-bg-card)" stroke="var(--color-border-strong)" stroke-dasharray="4 3" />
+      <text x="630" y="364" fill="var(--color-text)" font-size="13" text-anchor="middle" font-weight="600">桥接容器</text>
+      <text x="630" y="384" fill="var(--color-text-muted)" font-size="10" text-anchor="middle">bridge · Docker</text>
+      <text x="630" y="402" fill="var(--color-text-muted)" font-size="10" text-anchor="middle" font-family="var(--font-mono)">Gateway WS ↔ 归一化</text>
+      <line x1="630" y1="280" x2="630" y2="340" stroke="var(--color-warn)" stroke-width="1.5" marker-end="url(#arr)" stroke-dasharray="3 3" />
+
+      <!-- A2A future -->
+      <rect x="760" y="340" width="100" height="80" rx="10" fill="var(--color-bg-card)" stroke="var(--color-border-strong)" opacity="0.6" />
+      <text x="810" y="364" fill="var(--color-text-muted)" font-size="13" text-anchor="middle" font-weight="600">A2A</text>
+      <text x="810" y="384" fill="var(--color-text-muted)" font-size="10" text-anchor="middle">HTTP</text>
+      <text x="810" y="402" fill="var(--color-text-muted)" font-size="10" text-anchor="middle">远期</text>
+
+      <!-- arrow from bridge to OpenClaw -->
+      <line x1="630" y1="420" x2="630" y2="450" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arr)" />
+
+      <!-- OpenClaw Gateway -->
+      <rect x="520" y="450" width="220" height="22" rx="6" fill="var(--color-bg-elevated)" stroke="var(--color-border)" />
+      <text x="630" y="466" fill="var(--color-text-muted)" font-size="11" text-anchor="middle" font-family="var(--font-mono)">OpenClaw Gateway :18789</text>
+    </svg>
+  </div>
+
+  <div class="mt-6 grid gap-3 sm:grid-cols-3 text-sm text-[var(--color-text-muted)]">
+    <div class="flex items-center gap-2">
+      <span class="inline-block h-2 w-2 rounded-full bg-[var(--color-ok)]"></span>
+      已实装的传输链路
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="inline-block h-2 w-2 rounded-full bg-[var(--color-warn)]"></span>
+      桥接中（协议版本漂移隔离层）
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="inline-block h-2 w-2 rounded-full bg-[var(--color-border-strong)]"></span>
+      远期 / 占位
+    </div>
+  </div>
+</section>

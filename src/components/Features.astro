@@ -1,0 +1,64 @@
+---
+const features = [
+  {
+    icon: "phone",
+    title: "HarmonyOS 原生",
+    desc: "ArkTS / ArkUI / Stage 模型,HarmonyOS 5.0+ (API 12+) 原生运行。该生态目前无任何 Agent 遥控客户端。",
+  },
+  {
+    icon: "plug",
+    title: "归一化多 Agent",
+    desc: "一个 App 通吃 Hermes / OpenCode / OpenClaw。按 AgentKind 路由适配器,协议漂移被隔离在桥接层,App 永不因升级失效。",
+  },
+  {
+    icon: "feather",
+    title: "轻量无 IM",
+    desc: "不做钉钉/飞书那种重型聊天。Agent 跑在桌面/服务器,断线重连即恢复,天然绕开鸿蒙后台限制。",
+  },
+  {
+    icon: "shield",
+    title: "隐私优先",
+    desc: "Token 走 HUKS AES-GCM 加密,本地存储用 RelationalStore,无云端服务、无追踪、无广告。",
+  },
+];
+---
+
+<section id="features" class="container-page py-20 sm:py-28">
+  <div class="mb-12 max-w-2xl">
+    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+      为自部署 Agent 的开发者设计
+    </h2>
+    <p class="mt-4 text-lg text-[var(--color-text-muted)]">
+      你的 Agent 跑在 NAS / 服务器 / 桌面 Docker 上,手机就是最方便的遥控器。
+    </p>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
+    {features.map((f) => (
+      <article class="card card-hover group">
+        <div class="flex items-start gap-4">
+          <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[color-mix(in_oklab,var(--color-accent)_15%,transparent)] text-[var(--color-accent)] ring-1 ring-[color-mix(in_oklab,var(--color-accent)_25%,transparent)]">
+            {f.icon === "phone" && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            )}
+            {f.icon === "plug" && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8z"/></svg>
+            )}
+            {f.icon === "feather" && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.67 19a2 2 0 0 0 1.416-.586l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.4A2 2 0 0 0 4 11.17V17a2 2 0 0 0 2 2z"/><path d="M16 8 2 22"/><path d="M17.5 15H9"/></svg>
+            )}
+            {f.icon === "shield" && (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            )}
+          </span>
+          <div class="min-w-0">
+            <h3 class="text-lg font-semibold">{f.title}</h3>
+            <p class="mt-1.5 text-sm leading-relaxed text-[var(--color-text-muted)]">
+              {f.desc}
+            </p>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
