@@ -1,0 +1,32 @@
+---
+/** Agent 头像占位：按 kind 配色 + 首字。size 为 cqw 值对应的字号容器。 */
+interface Props {
+  kind?: string;
+  label?: string;
+  size?: string;
+  rounded?: string;
+}
+
+const {
+  kind = "generic",
+  label = "A",
+  size = "10cqw",
+  rounded = "2.2cqw",
+} = Astro.props;
+
+const colorMap: Record<string, string> = {
+  hermes: "mock-avatar-hermes",
+  opencode: "mock-avatar-opencode",
+  "local-opcode": "mock-avatar-opencode",
+  openai: "mock-avatar-opencode",
+  openclaw: "mock-avatar-openclaw",
+};
+---
+
+<span
+  class:list={["mock-avatar", colorMap[kind] ?? "mock-avatar-generic"]}
+  style={`width:${size};height:${size};border-radius:${rounded};font-size:${`calc(${size} * 0.42)`}`}
+  aria-hidden="true"
+>
+  {label}
+</span>

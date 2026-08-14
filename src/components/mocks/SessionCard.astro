@@ -1,0 +1,32 @@
+---
+/** 进行中任务卡片。chipCls: running | awaiting | idle | failed */
+import MockAvatar from "./MockAvatar.astro";
+
+interface Props {
+  title: string;
+  chip: string;
+  chipCls?: "running" | "awaiting" | "idle" | "failed";
+  agentName: string;
+  agentKind?: string;
+  stage?: string;
+  ago: string;
+}
+
+const { title, chip, chipCls = "running", agentName, agentKind = "generic", stage = "", ago } = Astro.props;
+---
+
+<div class="mock-card px-[3cqw] py-[2.4cqw]">
+  <div class="flex items-center gap-[1.6cqw]">
+    <p class="min-w-0 flex-1 truncate text-[3.4cqw] font-bold">{title}</p>
+    <span class:list={["mock-chip", `mock-chip-${chipCls}`]}>
+      <span class="mock-chip-dot"></span>
+      {chip}
+    </span>
+  </div>
+  <div class="mt-[1.6cqw] flex items-center gap-[1.4cqw] text-[2.7cqw] text-[var(--color-app-fg-muted)]">
+    <MockAvatar kind={agentKind} label={agentName.slice(0, 1)} size="5cqw" rounded="1.2cqw" />
+    <span class="truncate">{agentName}</span>
+    {stage && <span class="truncate text-[var(--color-app-fg-subtle)]">· {stage}</span>}
+    <span class="ml-auto shrink-0 text-[var(--color-app-fg-subtle)]">{ago}</span>
+  </div>
+</div>

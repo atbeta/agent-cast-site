@@ -1,0 +1,47 @@
+---
+/** 聊天页 mock（浅色）：流式回复 + 思考 + 工具调用卡片 + 输入栏（ChatPage.ets 忠实还原） */
+import ChatHeader from "./ChatHeader.astro";
+import ChatInput from "./ChatInput.astro";
+---
+
+<div class="mock-app">
+  <ChatHeader title="重构 UI 组件层" subtitle="我的 Hermes" />
+
+  <div class="flex min-h-0 flex-1 flex-col gap-[2.4cqw] overflow-hidden px-[3.6cqw] py-[2.6cqw]">
+    <div class="mock-bubble mock-bubble-agent">
+      收到，我先看一下当前组件目录结构，再给你拆解方案。
+    </div>
+
+    <!-- 思考过程（折叠） -->
+    <div class="self-start flex items-center gap-[1.4cqw] rounded-full bg-[var(--color-app-bubble-agent)] px-[2.6cqw] py-[1.4cqw] text-[2.6cqw] text-[var(--color-app-fg-muted)]">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-[2.8cqw] w-[2.8cqw] animate-pulse text-[var(--color-app-brand)]" aria-hidden="true">
+        <path d="M9 18h6" />
+        <path d="M10 22h4" />
+        <path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z" />
+      </svg>
+      思考中 · 正在对比 3 个拆分方案
+    </div>
+
+    <!-- 工具调用卡片 -->
+    <div class="mock-toolcard">
+      <div class="mock-toolhead">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-[3cqw] w-[3cqw] text-[var(--color-app-ok)]" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+        RunCommand
+        <span class="ml-auto text-[2.5cqw] font-normal text-[var(--color-app-fg-muted)]">完成 · 1.2s</span>
+      </div>
+      <div class="mock-toolbody">rg "Button" src/components --files</div>
+    </div>
+
+    <div class="mock-bubble mock-bubble-agent">
+      目前组件目录里有 8 个基础组件，Button.tsx 承担了 4 种变体。我的方案是……
+    </div>
+
+    <div class="mock-bubble mock-bubble-user">
+      可以，先按变体拆分，注意保持 API 兼容。
+    </div>
+  </div>
+
+  <ChatInput placeholder="输入消息…" />
+</div>

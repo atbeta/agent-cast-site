@@ -8,23 +8,43 @@ const features = [
   {
     icon: "plug",
     title: "归一化多 Agent",
-    desc: "一个 App 通吃 Hermes / OpenCode / OpenClaw。按 AgentKind 路由适配器,协议漂移被隔离在桥接层,App 永不因升级失效。",
+    desc: "一个 App 通吃 Hermes / OpenCode / OpenClaw / OpenAI 兼容。按 AgentKind 路由适配器,协议漂移被隔离在桥接层,App 永不因升级失效。",
   },
   {
-    icon: "feather",
-    title: "轻量无 IM",
-    desc: "不做钉钉/飞书那种重型聊天。Agent 跑在桌面/服务器,断线重连即恢复,天然绕开鸿蒙后台限制。",
+    icon: "shield-check",
+    title: "人在环路,安全可控",
+    desc: "Agent 要执行高危操作时审批卡实时推到你手上:允许一次、会话内免问、始终信任,或带原因拒绝让它纠正重来。",
   },
   {
-    icon: "shield",
-    title: "隐私优先",
-    desc: "Token 走 HUKS AES-GCM 加密,本地存储用 RelationalStore,无云端服务、无追踪、无广告。",
+    icon: "activity",
+    title: "完整回合体验",
+    desc: "流式正文、思考过程、工具调用卡片、Token 与耗时统计——桌面端发生什么,手机端看到什么。",
+  },
+  {
+    icon: "bell",
+    title: "离开也放心",
+    desc: "后台长时任务保持连接,回合完成、审批到达均有系统通知与触感反馈。人离开电脑,事不停。",
+  },
+  {
+    icon: "grid",
+    title: "桌面服务卡片",
+    desc: "进行中的任务直接放上手机桌面,一点直达会话,不用打开 App 就能看到进度。",
+  },
+  {
+    icon: "layers",
+    title: "多实例,一处掌控",
+    desc: "同时接入多个 Agent 服务,概览卡一览在线状态、时延与进行中任务,按实例筛选会话。",
+  },
+  {
+    icon: "sliders",
+    title: "上下文与导出",
+    desc: "上下文窗口用量可视化、超限预警,会话一键导出 Markdown,聊天记录随时带走。",
   },
 ];
 ---
 
-<section id="features" class="container-page py-14 sm:py-20 lg:py-28">
-  <div class="mb-8 sm:mb-12 max-w-2xl">
+<section id="features" class="container-page py-12 sm:py-20 lg:py-28">
+  <div class="mb-6 sm:mb-12 max-w-2xl">
     <h2 class="section-heading">
       为自部署 Agent 的开发者设计
     </h2>
@@ -44,11 +64,23 @@ const features = [
             {f.icon === "plug" && (
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:h-5 sm:w-5"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8z"/></svg>
             )}
-            {f.icon === "feather" && (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:h-5 sm:w-5"><path d="M12.67 19a2 2 0 0 0 1.416-.586l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.4A2 2 0 0 0 4 11.17V17a2 2 0 0 0 2 2z"/><path d="M16 8 2 22"/><path d="M17.5 15H9"/></svg>
-            )}
-            {f.icon === "shield" && (
+            {f.icon === "shield-check" && (
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:h-5 sm:w-5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            )}
+            {f.icon === "activity" && (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:h-5 sm:w-5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            )}
+            {f.icon === "bell" && (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:h-5 sm:w-5"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+            )}
+            {f.icon === "grid" && (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:h-5 sm:w-5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            )}
+            {f.icon === "layers" && (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:h-5 sm:w-5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            )}
+            {f.icon === "sliders" && (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sm:h-5 sm:w-5"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
             )}
           </span>
           <div class="min-w-0">

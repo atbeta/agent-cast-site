@@ -2,30 +2,37 @@
 const agents = [
   {
     name: "Hermes",
-    protocol: "OpenAI 兼容 + SSE",
+    protocol: "Hermes API + SSE",
     status: "stable",
-    note: "M1.5 进行中 — 思考过程 + 审批按钮 + 服务端中断",
+    note: "会话链路主路径 — 思考过程 + 审批按钮 + 服务端中断",
     href: "/guide#hermes",
   },
   {
     name: "OpenCode",
-    protocol: "/global/event SSE",
+    protocol: "OpenCode HTTP + SSE",
     status: "stable",
     note: "真流式主路径 — 断线回退轮询,Diff 文件级查看",
     href: "/guide#opencode",
   },
   {
+    name: "OpenAI 兼容",
+    protocol: "OpenAI 兼容 SSE",
+    status: "stable",
+    note: "通用 chat/completions — vLLM / llama.cpp 等",
+    href: null,
+  },
+  {
     name: "OpenClaw",
-    protocol: "Gateway WebSocket",
+    protocol: "WebSocket + JSON-RPC",
     status: "wip",
-    note: "Phase 1 WsTransport 已完成 — 25s 心跳 + header 认证",
+    note: "Gateway WS 客户端已实装 — 审批/桥接完善中 (M2)",
     href: "/guide#openclaw",
   },
   {
     name: "A2A",
-    protocol: "HTTP binding",
+    protocol: "A2A HTTP",
     status: "planned",
-    note: "远期规划 — 借鸿蒙小艺开放平台接入",
+    note: "预留 — 借鸿蒙小艺开放平台接入",
     href: null,
   },
 ];
@@ -37,8 +44,8 @@ const statusLabel: Record<string, { text: string; cls: string }> = {
 };
 ---
 
-<section id="agents" class="container-page py-14 sm:py-20 lg:py-28">
-  <div class="mb-8 sm:mb-12 max-w-2xl">
+<section id="agents" class="container-page py-12 sm:py-20 lg:py-28">
+  <div class="mb-6 sm:mb-12 max-w-2xl">
     <h2 class="section-heading">
       支持的 Agent
     </h2>
@@ -47,7 +54,37 @@ const statusLabel: Record<string, { text: string; cls: string }> = {
     </p>
   </div>
 
-  <div class="overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)]">
+  <!-- Mobile: card list -->
+  <div class="grid gap-3 sm:hidden">
+    {agents.map((a) => {
+      const s = statusLabel[a.status];
+      return (
+        <article class="card p-4">
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0">
+              {a.href ? (
+                <a href={a.href} class="text-base font-semibold hover:text-[var(--color-accent)]">
+                  {a.name}
+                </a>
+              ) : (
+                <p class="text-base font-semibold">{a.name}</p>
+              )}
+              <p class="mt-1 break-all font-mono text-[11px] text-[var(--color-text-muted)]">
+                {a.protocol}
+              </p>
+            </div>
+            <span class:list={["badge shrink-0", s.cls]}>{s.text}</span>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+            {a.note}
+          </p>
+        </article>
+      );
+    })}
+  </div>
+
+  <!-- sm+: table -->
+  <div class="hidden overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-card)] sm:block">
     <div class="overflow-x-auto">
       <table class="w-full text-sm">
         <thead>

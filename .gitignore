@@ -32,3 +32,6 @@ screenshots-preview/
 -e 
 # Local preview screenshots (v2)
 screenshots-v2/
+
+# Local Playwright MCP screenshot artifacts
+.playwright-mcp/

@@ -1,8 +1,8 @@
 ---
 ---
 
-<section id="architecture" class="container-page py-14 sm:py-20 lg:py-28">
-  <div class="mb-8 sm:mb-12 max-w-2xl">
+<section id="architecture" class="container-page py-12 sm:py-20 lg:py-28">
+  <div class="mb-6 sm:mb-12 max-w-2xl">
     <h2 class="section-heading">
       架构总览
     </h2>
@@ -13,13 +13,22 @@
   </div>
 
   <div class="card overflow-hidden p-4 sm:p-6">
-    <svg
-      viewBox="0 0 920 480"
-      class="w-full h-auto"
-      role="img"
-      aria-label="Agent Cast 架构图"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <p class="-mt-1 mb-3 flex items-center gap-1.5 text-[11px] text-[var(--color-text-subtle)] sm:hidden" aria-hidden="true">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6" />
+        <polyline points="9 18 3 12 9 6" transform="translate(6,0)" />
+      </svg>
+      左右滑动查看完整架构图
+    </p>
+    <div class="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+      <div class="min-w-[720px] sm:min-w-0">
+        <svg
+          viewBox="0 0 920 480"
+          class="block w-full h-auto"
+          role="img"
+          aria-label="Agent Cast 架构图"
+          xmlns="http://www.w3.org/2000/svg"
+        >
       <defs>
         <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" fill="currentColor" />
@@ -154,7 +163,9 @@
       <!-- bridge → gateway (dashed) -->
       <line x1="580" y1="420" x2="580" y2="450" stroke="currentColor" stroke-width="1.2"
             stroke-dasharray="3 3" marker-end="url(#arr)" />
-    </svg>
+        </svg>
+      </div>
+    </div>
   </div>
 
   <div class="mt-5 sm:mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm text-[var(--color-text-muted)]">

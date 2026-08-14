@@ -1,0 +1,57 @@
+---
+/** 审批卡 mock（Agent 请求执行操作，等待拍板）— 差异化主打的屏幕 */
+import ChatHeader from "./ChatHeader.astro";
+import ChatInput from "./ChatInput.astro";
+---
+
+<div class="mock-app">
+  <ChatHeader title="等待我审批的改动" subtitle="CodeBox · opencode-site" />
+
+  <div class="flex min-h-0 flex-1 flex-col gap-[2.4cqw] overflow-hidden px-[3.6cqw] py-[2.6cqw]">
+    <div class="mock-bubble mock-bubble-agent">
+      修改已就绪，需要运行构建验证。这一步会改动 node_modules 缓存，需要您确认。
+    </div>
+
+    <!-- 审批卡 -->
+    <div class="mock-card overflow-hidden">
+      <div class="flex items-center gap-[1.6cqw] border-b border-[var(--color-app-border)] px-[3cqw] py-[2.2cqw]">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-[4.4cqw] w-[4.4cqw] shrink-0 text-[var(--color-app-warn)]" aria-hidden="true">
+          <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+          <line x1="12" y1="9" x2="12" y2="13" />
+          <line x1="12" y1="17" x2="12.01" y2="17" />
+        </svg>
+        <div class="min-w-0">
+          <p class="text-[3.2cqw] font-bold">Agent 请求执行操作</p>
+          <p class="text-[2.5cqw] text-[var(--color-app-fg-muted)]">RunCommand · 等待拍板</p>
+        </div>
+        <span class="mock-chip mock-chip-awaiting ml-auto shrink-0">
+          <span class="mock-chip-dot"></span>
+          待审批
+        </span>
+      </div>
+
+      <div class="bg-[var(--color-app-control)] px-[3cqw] py-[2.4cqw]">
+        <p class="truncate font-mono text-[2.6cqw] text-[var(--color-app-fg)]">npm run build --workspace app</p>
+        <p class="mt-[1cqw] text-[2.4cqw] text-[var(--color-app-fg-muted)]">执行目录 · /srv/agent-cast-site</p>
+      </div>
+
+      <div class="grid gap-[1.4cqw] px-[3cqw] py-[2.4cqw]">
+        <div class="flex items-center justify-center rounded-[1.8cqw] bg-[var(--color-app-brand)] py-[2cqw] text-[2.9cqw] font-semibold text-white">
+          允许一次
+        </div>
+        <div class="flex items-center justify-center rounded-[1.8cqw] border border-[var(--color-app-border)] bg-[var(--color-app-control)] py-[2cqw] text-[2.9cqw] font-medium text-[var(--color-app-fg)]">
+          会话内免问
+        </div>
+        <div class="flex items-center justify-center rounded-[1.8cqw] border border-[var(--color-app-border)] bg-[var(--color-app-control)] py-[2cqw] text-[2.9cqw] font-medium text-[var(--color-app-danger)]">
+          拒绝
+        </div>
+      </div>
+    </div>
+
+    <div class="mock-bubble mock-bubble-agent">
+      构建通过后我会同步展示 diff，方便您核对改动范围。
+    </div>
+  </div>
+
+  <ChatInput placeholder="输入消息…（审批中可发消息）" />
+</div>

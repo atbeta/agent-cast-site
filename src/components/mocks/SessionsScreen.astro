@@ -1,0 +1,149 @@
+---
+/** 会话列表 mock：搜索 + 筛选 chip + 需要关注 / 最近完成分组（SessionsPage.ets 忠实还原） */
+import MockAvatar from "./MockAvatar.astro";
+import TabBar from "./TabBar.astro";
+
+const attention = [
+  {
+    title: "等待我审批的改动",
+    preview: "Agent 想运行 npm run build，等您拍板…",
+    chip: "待审批",
+    chipCls: "awaiting",
+    agent: "CodeBox",
+    kind: "opencode",
+    dir: "opencode-site",
+    ago: "刚刚",
+  },
+  {
+    title: "重构 UI 组件层",
+    preview: "正在处理 Button.tsx 的变体拆分…",
+    chip: "执行中",
+    chipCls: "running",
+    agent: "我的 Hermes",
+    kind: "hermes",
+    dir: "agent-cast",
+    ago: "2 分钟前",
+  },
+];
+
+const done = [
+  {
+    title: "排查 CI 偶发失败",
+    preview: "锁定为缓存键未参与哈希，已修。",
+    chip: "已完成",
+    chipCls: "idle",
+    agent: "CodeBox",
+    kind: "opencode",
+    dir: "agent-cast-site",
+    ago: "1 小时前",
+  },
+  {
+    title: "周末部署清单",
+    preview: "4 项已核对，无阻塞。",
+    chip: "已完成",
+    chipCls: "idle",
+    agent: "我的 Hermes",
+    kind: "hermes",
+    dir: "ops",
+    ago: "昨天",
+  },
+];
+
+const filters = ["全部", "我的 Hermes", "CodeBox"];
+---
+
+<div class="mock-app px-[4cqw] pb-0 pt-[3cqw]">
+  <header>
+    <p class="mock-pagetitle">会话</p>
+    <p class="mock-pagesub mt-[0.6cqw]">1 个需要关注 · 共 4 个</p>
+  </header>
+
+  <div class="mt-[2.8cqw] flex flex-col gap-[2cqw]">
+    <!-- 搜索框 -->
+    <div class="flex items-center gap-[1.8cqw]">
+      <div class="flex h-[7.6cqw] flex-1 items-center gap-[1.6cqw] rounded-[1.8cqw] bg-[var(--color-app-control)] px-[3cqw] text-[2.9cqw] text-[var(--color-app-fg-muted)]">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-[3.2cqw] w-[3.2cqw] shrink-0" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        搜索会话或消息…
+      </div>
+    </div>
+
+    <!-- 实例筛选 chip -->
+    <div class="flex gap-[1.4cqw]">
+      {filters.map((f, i) => (
+        <span
+          class:list={[
+            "rounded-full px-[2.6cqw] py-[0.9cqw] text-[2.7cqw]",
+            i === 0
+              ? "bg-[#e9effd] font-semibold text-[var(--color-app-brand)]"
+              : "text-[var(--color-app-fg-muted)]",
+          ]}
+        >
+          {f}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <!-- 会话列表 -->
+  <div class="mt-[1.6cqw] flex-1 overflow-hidden">
+    <p class="mb-[1.2cqw] px-[0.6cqw] text-[2.8cqw] font-bold text-[var(--color-app-fg-muted)]">需要关注</p>
+    <div class="flex flex-col gap-[2cqw]">
+      {attention.map((s) => (
+        <div class="mock-card px-[3cqw] py-[2.6cqw]">
+          <div class="flex items-center gap-[2.4cqw]">
+            <MockAvatar kind={s.kind} label={s.agent.slice(0, 1)} size="10cqw" />
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-[1.6cqw]">
+                <p class="truncate text-[3.3cqw] font-semibold">{s.title}</p>
+                <p class="ml-auto shrink-0 text-[2.4cqw] text-[var(--color-app-fg-subtle)]">{s.ago}</p>
+              </div>
+              <p class="mt-[0.8cqw] truncate text-[2.7cqw] text-[var(--color-app-fg-muted)]">{s.preview}</p>
+              <div class="mt-[1.2cqw] flex items-center gap-[1.4cqw]">
+                <span class:list={["mock-chip", `mock-chip-${s.chipCls}`]}>
+                  <span class="mock-chip-dot"></span>
+                  {s.chip}
+                </span>
+                <span class="truncate text-[2.5cqw] text-[var(--color-app-fg-muted)]">
+                  {s.agent} · {s.dir}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="mb-[1.2cqw] mt-[3cqw] px-[0.6cqw] text-[2.8cqw] font-bold text-[var(--color-app-fg-muted)]">最近完成</p>
+    <div class="flex flex-col gap-[2cqw]">
+      {done.map((s) => (
+        <div class="mock-card px-[3cqw] py-[2.6cqw]">
+          <div class="flex items-center gap-[2.4cqw]">
+            <MockAvatar kind={s.kind} label={s.agent.slice(0, 1)} size="10cqw" />
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-[1.6cqw]">
+                <p class="truncate text-[3.3cqw] font-semibold">{s.title}</p>
+                <p class="ml-auto shrink-0 text-[2.4cqw] text-[var(--color-app-fg-subtle)]">{s.ago}</p>
+              </div>
+              <p class="mt-[0.8cqw] truncate text-[2.7cqw] text-[var(--color-app-fg-muted)]">{s.preview}</p>
+              <div class="mt-[1.2cqw] flex items-center gap-[1.4cqw]">
+                <span class:list={["mock-chip", `mock-chip-${s.chipCls}`]}>
+                  <span class="mock-chip-dot"></span>
+                  {s.chip}
+                </span>
+                <span class="truncate text-[2.5cqw] text-[var(--color-app-fg-muted)]">
+                  {s.agent} · {s.dir}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="min-h-[2.4cqw]"></div>
+  <TabBar active="sessions" />
+</div>

@@ -1,0 +1,67 @@
+---
+/** Agent 提问卡 mock（QuestionCard：AI 主动提问，选项一点即答） */
+import ChatHeader from "./ChatHeader.astro";
+import ChatInput from "./ChatInput.astro";
+
+const question = {
+  header: "方案选择",
+  question: "这次重构想用哪种拆分方式？",
+  options: ["按变体拆 Button", "按原子/分子拆", "保持现状"],
+};
+---
+
+<div class="mock-app">
+  <ChatHeader title="新会话" subtitle="CodeBox · opencode-site" />
+
+  <div class="flex min-h-0 flex-1 flex-col gap-[2.4cqw] overflow-hidden px-[3.6cqw] py-[2.6cqw]">
+    <div class="mock-bubble mock-bubble-agent">
+      组件拆分前需要确认方向，麻烦您选一下。
+    </div>
+
+    <!-- 提问卡 -->
+    <div class="mock-card overflow-hidden">
+      <div class="flex items-center gap-[1.8cqw] border-b border-[var(--color-app-border)] px-[3cqw] py-[2.2cqw]">
+        <span class="inline-flex h-[4.6cqw] w-[4.6cqw] shrink-0 items-center justify-center rounded-full bg-[var(--color-app-brand)] font-bold text-white">
+          ?
+        </span>
+        <div class="min-w-0">
+          <p class="text-[3.2cqw] font-semibold">Agent 提问</p>
+          <p class="text-[2.4cqw] text-[var(--color-app-fg-muted)]">{question.header}</p>
+        </div>
+      </div>
+
+      <div class="px-[3cqw] py-[2.2cqw]">
+        <p class="text-[3.1cqw] font-medium">{question.question}</p>
+        <div class="mt-[1.8cqw] flex flex-col gap-[1.4cqw]">
+          {question.options.map((opt, i) => (
+            <div
+              class:list={[
+                "flex items-center justify-between rounded-[1.8cqw] border px-[2.6cqw] py-[2cqw] text-[2.8cqw]",
+                i === 0
+                  ? "border-[var(--color-app-brand)] bg-[#e9effd] font-semibold text-[var(--color-app-brand)]"
+                  : "border-[var(--color-app-border)] bg-[var(--color-app-control)] text-[var(--color-app-fg)]",
+              ]}
+            >
+              {opt}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="h-[3cqw] w-[3cqw] shrink-0" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-[2cqw] flex gap-[1.4cqw]">
+          <div class="flex flex-1 items-center justify-center rounded-[1.8cqw] border border-[var(--color-app-border)] bg-[var(--color-app-control)] py-[1.8cqw] text-[2.8cqw] text-[var(--color-app-fg-muted)]">
+            跳过
+          </div>
+          <div class="flex flex-1 items-center justify-center rounded-[1.8cqw] bg-[var(--color-app-brand)] py-[1.8cqw] text-[2.8cqw] font-semibold text-white">
+            回答
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ChatInput placeholder="或输入自己的答案…" />
+</div>

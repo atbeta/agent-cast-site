@@ -2,9 +2,9 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-[var(--color-border)] mt-24">
-  <div class="container-page py-12">
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+<footer class="border-t border-[var(--color-border)] mt-20 sm:mt-24">
+  <div class="container-page py-10 sm:py-12">
+    <div class="grid gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">
       <div class="lg:col-span-2">
         <a href="/" class="flex items-center gap-2 font-semibold">
           <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-[var(--color-accent)] text-white">
@@ -27,7 +27,7 @@ const year = new Date().getFullYear();
 
       <div>
         <h3 class="mb-3 text-sm font-semibold">产品</h3>
-        <ul class="space-y-2 text-sm text-[var(--color-text-muted)]">
+        <ul class="space-y-2.5 text-sm text-[var(--color-text-muted)]">
           <li><a href="/guide" class="hover:text-[var(--color-text)]">使用指南</a></li>
           <li><a href="/guide#download" class="hover:text-[var(--color-text)]">下载</a></li>
           <li><a href="/changelog" class="hover:text-[var(--color-text)]">更新日志</a></li>
@@ -36,7 +36,7 @@ const year = new Date().getFullYear();
 
       <div>
         <h3 class="mb-3 text-sm font-semibold">资源</h3>
-        <ul class="space-y-2 text-sm text-[var(--color-text-muted)]">
+        <ul class="space-y-2.5 text-sm text-[var(--color-text-muted)]">
           <li><a href="https://github.com/atbeta/agent-cast" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-text)]">GitHub 仓库</a></li>
           <li><a href="/privacy" class="hover:text-[var(--color-text)]">隐私政策</a></li>
           <li><a href="https://github.com/atbeta/agent-cast/issues" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-text)]">反馈问题</a></li>
@@ -44,7 +44,7 @@ const year = new Date().getFullYear();
       </div>
     </div>
 
-    <div class="mt-12 flex flex-col gap-3 border-t border-[var(--color-border)] pt-6 text-xs text-[var(--color-text-subtle)] sm:flex-row sm:items-center sm:justify-between">
+    <div class="mt-10 flex flex-col gap-2 border-t border-[var(--color-border)] pt-6 text-xs text-[var(--color-text-subtle)] sm:mt-12 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
       <p>© {year} Beta · Agent Cast · Made with care for HarmonyOS</p>
       <p class="font-mono">v1.0.0 · HarmonyOS 5.0+ (API 12+)</p>
     </div>

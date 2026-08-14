@@ -1,59 +1,90 @@
 ---
-const screenshots = [
-  { title: "会话列表", subtitle: "按实例筛选 + 状态标签" },
-  { title: "聊天界面", subtitle: "流式输出 + 思考过程" },
-  { title: "工具调用", subtitle: "可视化执行轨迹" },
-  { title: "审批中心", subtitle: "Agent 动作等你拍板" },
-  { title: "文件浏览", subtitle: "项目文件 + 搜索" },
-  { title: "Diff 查看", subtitle: "回合级代码改动" },
+import PhoneFrame from "./PhoneFrame.astro";
+import ConsoleScreen from "./mocks/ConsoleScreen.astro";
+import SessionsScreen from "./mocks/SessionsScreen.astro";
+import ChatScreen from "./mocks/ChatScreen.astro";
+import ApprovalScreen from "./mocks/ApprovalScreen.astro";
+import QuestionScreen from "./mocks/QuestionScreen.astro";
+import DarkChatScreen from "./mocks/DarkChatScreen.astro";
+
+/**
+ * 6 屏忠实还原（对应 AppGallery 上架截图清单 docs/store/listing.md）。
+ * 拿到真截图后：把文件放 public/screens/，填 img 字段即替换 mockup。
+ */
+const screens = [
+  {
+    title: "控制台",
+    subtitle: "概览卡 · 最近实例 · 进行中任务",
+    Mock: ConsoleScreen,
+    variant: "light",
+    img: "",
+  },
+  {
+    title: "会话列表",
+    subtitle: "搜索筛选 · 状态徽标分组",
+    Mock: SessionsScreen,
+    variant: "light",
+    img: "",
+  },
+  {
+    title: "聊天页",
+    subtitle: "流式回复 · 思考过程 · 工具调用",
+    Mock: ChatScreen,
+    variant: "light",
+    img: "",
+  },
+  {
+    title: "审批中心",
+    subtitle: "高危操作等你拍板 · 差异化核心",
+    Mock: ApprovalScreen,
+    variant: "light",
+    img: "",
+  },
+  {
+    title: "Agent 提问",
+    subtitle: "选项一点即答",
+    Mock: QuestionScreen,
+    variant: "light",
+    img: "",
+  },
+  {
+    title: "深色模式聊天",
+    subtitle: "全套暗色 · Diff 文件级查看",
+    Mock: DarkChatScreen,
+    variant: "dark",
+    img: "",
+  },
 ];
 ---
 
-<section id="screenshots" class="container-page py-14 sm:py-20 lg:py-28">
-  <div class="mb-8 sm:mb-12 max-w-2xl">
+<section id="screenshots" class="container-page py-12 sm:py-20 lg:py-28">
+  <div class="mb-6 sm:mb-12 max-w-2xl">
     <h2 class="section-heading">
       看得见的 Agent 操作
     </h2>
     <p class="section-sub">
       不是 IM,是真正的 Agent 遥控器 — 看它在想什么、看它在做什么、看它改了什么。
+      六屏还原 App 真实界面,可直接作为华为应用市场截图素材。
     </p>
   </div>
 
   <div class="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-    {screenshots.map((s, i) => (
+    {screens.map((s) => (
       <figure class="card card-hover group overflow-hidden p-0">
-        <div class="relative aspect-[3/5] bg-gradient-to-br from-[var(--color-bg-elevated)] to-[var(--color-bg)] overflow-hidden">
-          <!-- Phone frame -->
-          <div class="absolute inset-3 sm:inset-4 rounded-[20px] sm:rounded-[24px] border border-[var(--color-border-strong)] bg-[var(--color-bg)] overflow-hidden shadow-[0_8px_32px_-12px_rgba(0,125,255,0.25)]">
-            <!-- Status bar -->
-            <div class="flex items-center justify-between px-2.5 py-1 sm:px-3 sm:py-1.5 text-[8px] sm:text-[8px] text-[var(--color-text-subtle)]">
-              <span>9:41</span>
-              <span class="font-mono">Agent Cast</span>
-              <span>100%</span>
-            </div>
-            <!-- Content placeholder -->
-            <div class="px-2.5 sm:px-3 space-y-1.5 mt-1">
-              <div class="h-1 sm:h-1.5 rounded bg-[var(--color-accent)] opacity-30" style={`width: ${50 + (i * 7) % 40}%`}></div>
-              <div class="h-1 rounded bg-[var(--color-border)]" style={`width: ${70 + (i * 5) % 25}%`}></div>
-              <div class="h-1 rounded bg-[var(--color-border)]" style={`width: ${40 + (i * 11) % 50}%`}></div>
-            </div>
-            <div class="mt-2 sm:mt-3 px-2.5 sm:px-3 space-y-1.5">
-              <div class="rounded-md bg-[var(--color-bg-elevated)] border border-[var(--color-border)] p-1.5 sm:p-2">
-                <div class="h-1 rounded bg-[var(--color-accent)] opacity-40 w-3/4"></div>
-                <div class="mt-1 h-1 rounded bg-[var(--color-border-strong)] w-full"></div>
-                <div class="mt-1 h-1 rounded bg-[var(--color-border-strong)] w-2/3"></div>
-              </div>
-              <div class="rounded-md bg-[color-mix(in_oklab,var(--color-accent)_8%,transparent)] border border-[color-mix(in_oklab,var(--color-accent)_20%,transparent)] p-1.5 sm:p-2">
-                <div class="h-1 rounded bg-[var(--color-accent)] opacity-50 w-full"></div>
-                <div class="mt-1 h-1 rounded bg-[var(--color-accent)] opacity-30 w-5/6"></div>
-              </div>
-            </div>
+        <div class="relative flex items-center justify-center bg-[var(--color-bg-elevated)] px-3 py-5 sm:px-4 sm:py-6">
+          <div class="w-[150px] sm:w-[170px] lg:w-[200px]">
+            <PhoneFrame variant={s.variant}>
+              <s.Mock />
+            </PhoneFrame>
           </div>
-
-          <!-- Hover overlay -->
-          <div class="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-            <span class="badge mb-3 sm:mb-4 backdrop-blur">预览占位</span>
-          </div>
+          {s.img && (
+            <img
+              src={s.img}
+              alt={`${s.title} 截图`}
+              class="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+            />
+          )}
         </div>
         <figcaption class="border-t border-[var(--color-border)] p-3 sm:p-4">
           <p class="text-sm font-medium sm:text-base">{s.title}</p>
@@ -64,6 +95,7 @@ const screenshots = [
   </div>
 
   <p class="mt-6 sm:mt-8 text-center text-xs sm:text-sm text-[var(--color-text-subtle)]">
-    截图占位 · 正式截图替换请联系 <a href="https://github.com/atbeta/agent-cast/issues" class="text-[var(--color-accent)] hover:underline">GitHub Issues</a>
+    当前为 HTML mockup(忠实还原 App UI)· 正式截图替换时把文件放
+    <code class="font-mono">public/screens/</code> 并填入 <code class="font-mono">img</code> 字段
   </p>
 </section>

@@ -1,0 +1,79 @@
+---
+/** 控制台首页 mock：概览卡 + 最近实例 + 进行中任务（HomePage.ets 忠实还原） */
+import InstanceRow from "./InstanceRow.astro";
+import SessionCard from "./SessionCard.astro";
+import TabBar from "./TabBar.astro";
+---
+
+<div class="mock-app px-[4cqw] pb-0 pt-[3cqw]">
+  <header>
+    <p class="mock-pagetitle">控制台</p>
+    <p class="mock-pagesub mt-[0.6cqw]">8 月 15 日 · 周六</p>
+  </header>
+
+  <div class="mt-[3cqw] flex flex-col gap-[2.6cqw]">
+    <!-- 运行概览 -->
+    <div class="mock-card px-[3.2cqw] py-[2.6cqw]">
+      <div class="flex items-center justify-between">
+        <p class="text-[3.4cqw] font-bold">运行概览</p>
+        <span class="mock-chip mock-chip-idle">
+          <span class="mock-chip-dot"></span>
+          已同步
+        </span>
+      </div>
+      <div class="mt-[2.4cqw] flex gap-[4cqw]">
+        <div>
+          <p class="font-mono text-[9cqw] font-bold leading-none">2</p>
+          <p class="mt-[1cqw] text-[2.7cqw] text-[var(--color-app-fg-muted)]">共 3 个实例 · 2 在线</p>
+        </div>
+        <div>
+          <p class="font-mono text-[9cqw] font-bold leading-none">3</p>
+          <p class="mt-[1cqw] text-[2.7cqw] text-[var(--color-app-fg-muted)]">进行中的任务</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 最近实例 -->
+    <section>
+      <div class="mb-[1.8cqw] flex items-center justify-between">
+        <p class="mock-sectiontitle">最近实例</p>
+        <p class="mock-sectionaction">查看全部 →</p>
+      </div>
+      <div class="mock-card overflow-hidden">
+        <InstanceRow name="我的 Hermes" kind="hermes" status="在线 · 12ms" />
+        <InstanceRow name="CodeBox" kind="opencode" status="在线 · 34ms" />
+      </div>
+    </section>
+
+    <!-- 进行中 -->
+    <section>
+      <div class="mb-[1.8cqw] flex items-center justify-between">
+        <p class="mock-sectiontitle">进行中</p>
+        <p class="mock-sectionaction">全部会话 →</p>
+      </div>
+      <div class="flex flex-col gap-[2cqw]">
+        <SessionCard
+          title="重构 UI 组件层"
+          chip="执行中"
+          chipCls="running"
+          agentName="我的 Hermes"
+          agentKind="hermes"
+          stage="FileEdit"
+          ago="2 分钟前"
+        />
+        <SessionCard
+          title="等待我审批的改动"
+          chip="待审批"
+          chipCls="awaiting"
+          agentName="CodeBox"
+          agentKind="opencode"
+          stage="正在执行"
+          ago="刚刚"
+        />
+      </div>
+    </section>
+  </div>
+
+  <div class="min-h-[2.4cqw] flex-1"></div>
+  <TabBar active="console" />
+</div>

@@ -1,0 +1,25 @@
+---
+/** 聊天页导航头。dark 变体由外层 .mock-app-dark 驱动配色。 */
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+
+const { title, subtitle = "" } = Astro.props;
+---
+
+<div class="mock-chathead">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="h-[4.2cqw] w-[4.2cqw] shrink-0" aria-hidden="true">
+    <polyline points="15 18 9 12 15 6" />
+  </svg>
+  <div class="min-w-0 flex-1 text-center">
+    <p class="truncate text-[3.6cqw] font-semibold">{title}</p>
+    {subtitle && (
+      <p class="truncate text-[2.5cqw] text-[var(--color-app-fg-muted)]">{subtitle}</p>
+    )}
+  </div>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-[4.2cqw] w-[4.2cqw] shrink-0 text-[var(--color-app-fg-muted)]" aria-hidden="true">
+    <circle cx="12" cy="12" r="9" />
+    <polyline points="12 6 12 12 16 14" />
+  </svg>
+</div>

@@ -1,0 +1,15 @@
+---
+interface Props {
+  placeholder?: string;
+  sendLabel?: string;
+}
+
+const { placeholder = "输入消息…", sendLabel = "↑" } = Astro.props;
+---
+
+<div class="mock-inputbar">
+  <div class="mock-inputfield">{placeholder}</div>
+  <div class="mock-send" aria-hidden="true">
+    <span class="text-[3.2cqw] leading-none font-medium">{sendLabel}</span>
+  </div>
+</div>

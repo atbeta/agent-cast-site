@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  /* Accent — HarmonyOS Blue */
-  --color-accent-50: #e6f2ff;
-  --color-accent-100: #b3d9ff;
-  --color-accent-200: #80bfff;
-  --color-accent-300: #4da6ff;
-  --color-accent-400: #1a8cff;
-  --color-accent-500: #007DFF;
-  --color-accent-600: #0066cc;
-  --color-accent-700: #004f99;
-  --color-accent-800: #003366;
-  --color-accent-900: #001a33;
-  --color-accent: #007DFF;
+  /* Accent — aligned to app brand #2867E4 (HarmonyOS Blue) */
+  --color-accent-50: #ebf1fd;
+  --color-accent-100: #d0dcf9;
+  --color-accent-200: #a6bcf2;
+  --color-accent-300: #7c9ceb;
+  --color-accent-400: #5280e7;
+  --color-accent-500: #2867e4;
+  --color-accent-600: #1f53c0;
+  --color-accent-700: #183f9a;
+  --color-accent-800: #112c74;
+  --color-accent-900: #0a1b4e;
+  --color-accent: #2867e4;
 
   /* Surfaces — dark first */
   --color-bg: #0a0a0b;
@@ -24,10 +24,42 @@
   --color-text-muted: #9a9a9d;
   --color-text-subtle: #6a6a6d;
 
-  /* Status */
-  --color-ok: #22c55e;
-  --color-warn: #f59e0b;
-  --color-danger: #ef4444;
+  /* Status — aligned to app palette */
+  --color-ok: #00a159;
+  --color-warn: #da950a;
+  --color-danger: #e1232f;
+
+  /* ---- App-screen mockup palette (faithful to the app's color.json) ---- */
+  /* Light */
+  --color-app-bg: #eef1f5;
+  --color-app-surface: #ffffff;
+  --color-app-muted: #eceff3;
+  --color-app-border: #e3e7eb;
+  --color-app-fg: #0f141c;
+  --color-app-fg-muted: #5f6b7a;
+  --color-app-fg-subtle: #8b929c;
+  --color-app-control: #f4f6f8;
+  --color-app-brand: #2867e4;
+  --color-app-bubble-user: #e7f0ff;
+  --color-app-bubble-agent: #f0f0f0;
+  --color-app-ok: #00a159;
+  --color-app-warn: #da950a;
+  --color-app-danger: #e1232f;
+  /* Dark */
+  --color-appd-bg: #0e1014;
+  --color-appd-surface: #191d24;
+  --color-appd-muted: #232833;
+  --color-appd-border: #2e353f;
+  --color-appd-fg: #e6ebf2;
+  --color-appd-fg-muted: #9aa5b3;
+  --color-appd-fg-subtle: #6d7784;
+  --color-appd-control: #22272f;
+  --color-appd-brand: #2867e4;
+  --color-appd-bubble-user: #18253a;
+  --color-appd-bubble-agent: #1e242b;
+  --color-appd-ok: #00a159;
+  --color-appd-warn: #da950a;
+  --color-appd-danger: #e1232f;
 
   /* Typography */
   --font-sans: "HarmonyOS Sans SC", "Source Han Sans SC", -apple-system,
@@ -90,7 +122,7 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-md
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md
            bg-[var(--color-accent)] px-4 py-2.5 sm:px-5
            text-sm sm:text-base
            font-medium text-white
@@ -101,7 +133,7 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-md
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-md
            border border-[var(--color-border-strong)]
            bg-[var(--color-bg-elevated)] px-4 py-2.5 sm:px-5
            text-sm sm:text-base
@@ -112,8 +144,8 @@
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-md
-           px-2.5 py-2 sm:px-4
+    @apply inline-flex min-h-[40px] items-center justify-center gap-2 rounded-md
+           px-2.5 py-2 sm:px-4 sm:min-h-[40px]
            text-sm font-medium text-[var(--color-text-muted)]
            transition-colors duration-150
            hover:text-[var(--color-text)];
@@ -184,6 +216,286 @@
 
   :where(.section-sub) {
     @apply mt-3 sm:mt-4 text-base text-[var(--color-text-muted)] sm:text-lg max-w-2xl;
+  }
+}
+
+/* ----- App-screen mockups (faithful to the app UI) ----- */
+@layer components {
+  /* container-type so cqw units scale with phone-frame width */
+  .mock-screen {
+    container-type: inline-size;
+  }
+
+  .mock-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background: var(--color-app-bg);
+    color: var(--color-app-fg);
+    overflow: hidden;
+  }
+
+  .mock-app-dark {
+    background: var(--color-appd-bg);
+    color: var(--color-appd-fg);
+  }
+
+  /* dark scope: remap app tokens → appd tokens so every var(--color-app-*) rule flips */
+  .mock-dark {
+    --color-app-bg: var(--color-appd-bg);
+    --color-app-surface: var(--color-appd-surface);
+    --color-app-muted: var(--color-appd-muted);
+    --color-app-border: var(--color-appd-border);
+    --color-app-fg: var(--color-appd-fg);
+    --color-app-fg-muted: var(--color-appd-fg-muted);
+    --color-app-fg-subtle: var(--color-appd-fg-subtle);
+    --color-app-control: var(--color-appd-control);
+    --color-app-brand: var(--color-appd-brand);
+    --color-app-bubble-user: var(--color-appd-bubble-user);
+    --color-app-bubble-agent: var(--color-appd-bubble-agent);
+    --color-app-ok: var(--color-appd-ok);
+    --color-app-warn: var(--color-appd-warn);
+    --color-app-danger: var(--color-appd-danger);
+  }
+
+  /* type scale (all in cqw = % of phone screen width) */
+  .mock-pagetitle {
+    font-size: 6cqw;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .mock-pagesub {
+    font-size: 3cqw;
+    color: var(--color-app-fg-muted);
+    line-height: 1.4;
+  }
+  .mock-sectiontitle {
+    font-size: 3.4cqw;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .mock-sectionaction {
+    font-size: 2.9cqw;
+    color: var(--color-app-fg-muted);
+    line-height: 1.3;
+  }
+
+  /* card */
+  .mock-card {
+    background: var(--color-app-surface);
+    border: 1px solid var(--color-app-border);
+    border-radius: 3cqw;
+  }
+
+  /* status chip */
+  .mock-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.1cqw;
+    padding: 0.5cqw 2cqw;
+    border-radius: 999px;
+    font-size: 2.6cqw;
+    font-weight: 600;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+  .mock-chip-dot {
+    width: 1.7cqw;
+    height: 1.7cqw;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+  .mock-chip-running {
+    background: rgba(0, 161, 89, 0.14);
+    color: var(--color-app-ok);
+  }
+  .mock-chip-running .mock-chip-dot {
+    background: var(--color-app-ok);
+  }
+  .mock-chip-awaiting {
+    background: rgba(218, 149, 10, 0.2);
+    color: var(--color-app-warn);
+  }
+  .mock-chip-awaiting .mock-chip-dot {
+    background: var(--color-app-warn);
+  }
+  .mock-chip-failed {
+    background: rgba(225, 35, 47, 0.14);
+    color: var(--color-app-danger);
+  }
+  .mock-chip-failed .mock-chip-dot {
+    background: var(--color-app-danger);
+  }
+  .mock-chip-idle {
+    background: rgba(95, 107, 122, 0.12);
+    color: var(--color-app-fg-muted);
+  }
+  .mock-chip-idle .mock-chip-dot {
+    background: var(--color-app-fg-subtle);
+  }
+  .mock-dark .mock-chip-running {
+    background: rgba(0, 161, 89, 0.2);
+    color: #35c77e;
+  }
+  .mock-dark .mock-chip-running .mock-chip-dot {
+    background: #35c77e;
+  }
+  .mock-dark .mock-chip-awaiting {
+    background: rgba(218, 149, 10, 0.24);
+    color: #e3a90f;
+  }
+  .mock-dark .mock-chip-awaiting .mock-chip-dot {
+    background: #e3a90f;
+  }
+  .mock-dark .mock-chip-failed {
+    background: rgba(225, 35, 47, 0.2);
+    color: #ff5f69;
+  }
+  .mock-dark .mock-chip-failed .mock-chip-dot {
+    background: #ff5f69;
+  }
+  .mock-dark .mock-chip-idle {
+    background: rgba(154, 165, 179, 0.16);
+    color: var(--color-app-fg-muted);
+  }
+  .mock-dark .mock-chip-idle .mock-chip-dot {
+    background: var(--color-app-fg-subtle);
+  }
+
+  /* chat bubbles */
+  .mock-bubble {
+    border-radius: 3cqw;
+    padding: 2.2cqw 3cqw;
+    font-size: 3cqw;
+    line-height: 1.5;
+    max-width: 78%;
+  }
+  .mock-bubble-user {
+    background: var(--color-app-bubble-user);
+    border-bottom-right-radius: 0.8cqw;
+    align-self: flex-end;
+  }
+  .mock-bubble-agent {
+    background: var(--color-app-bubble-agent);
+    border-bottom-left-radius: 0.8cqw;
+    align-self: flex-start;
+  }
+
+  /* tool card */
+  .mock-toolcard {
+    align-self: stretch;
+    background: var(--color-app-surface);
+    border: 1px solid var(--color-app-border);
+    border-radius: 3cqw;
+    overflow: hidden;
+  }
+  .mock-toolhead {
+    display: flex;
+    align-items: center;
+    gap: 1.4cqw;
+    padding: 1.6cqw 2.4cqw;
+    font-size: 2.8cqw;
+    font-weight: 600;
+  }
+  .mock-toolbody {
+    padding: 1.6cqw 2.4cqw;
+    border-top: 1px solid var(--color-app-border);
+    font-size: 2.5cqw;
+    font-family: var(--font-mono);
+    color: var(--color-app-fg-muted);
+    line-height: 1.5;
+  }
+
+  /* input bar */
+  .mock-inputbar {
+    display: flex;
+    align-items: center;
+    gap: 2cqw;
+    padding: 1.6cqw 2.6cqw;
+    background: var(--color-app-surface);
+    border-top: 1px solid var(--color-app-border);
+  }
+  .mock-inputfield {
+    flex: 1;
+    height: 6.4cqw;
+    border-radius: 999px;
+    background: var(--color-app-control);
+    border: 1px solid var(--color-app-border);
+    padding: 0 3.2cqw;
+    font-size: 2.9cqw;
+    color: var(--color-app-fg-muted);
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .mock-send {
+    width: 6.6cqw;
+    height: 6.6cqw;
+    border-radius: 999px;
+    background: var(--color-app-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  /* avatar */
+  .mock-avatar {
+    border-radius: 1.8cqw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    font-size: 3cqw;
+  }
+  .mock-avatar-hermes {
+    background: #6d4eff;
+  }
+  .mock-avatar-opencode {
+    background: var(--color-app-brand);
+  }
+  .mock-avatar-openclaw {
+    background: #0d9488;
+  }
+  .mock-avatar-generic {
+    background: #64748b;
+  }
+
+  /* tab bar */
+  .mock-tabbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: 1.6cqw 0 1.2cqw;
+    background: var(--color-app-surface);
+    border-top: 1px solid var(--color-app-border);
+    font-size: 2.5cqw;
+    color: var(--color-app-fg-muted);
+  }
+  .mock-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8cqw;
+  }
+  .mock-tab-active {
+    color: var(--color-app-brand);
+  }
+
+  /* chat nav header */
+  .mock-chathead {
+    display: flex;
+    align-items: center;
+    gap: 1.6cqw;
+    padding: 2cqw 2.6cqw 1.6cqw;
+    background: var(--color-app-surface);
+    border-bottom: 1px solid var(--color-app-border);
   }
 }
 

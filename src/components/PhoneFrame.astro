@@ -1,0 +1,114 @@
+---
+/**
+ * 可复用手机壳：挖孔 + 状态栏 + 内容槽 + Home 指示条。
+ * 内容槽内放 mock 屏幕（用 .mock-screen + cqw 缩放）。
+ * variant="light"|"dark" 只影响状态栏/Home 指示条配色，屏幕底色由 mock 自己定。
+ */
+interface Props {
+  variant?: "light" | "dark";
+  class?: string;
+}
+
+const { variant = "light", class: className = "" } = Astro.props;
+const onDark = variant === "dark";
+const chrome = onDark ? "text-[#e6ebf2]" : "text-[#0f141c]";
+const homeBar = onDark ? "bg-[#e6ebf2]/70" : "bg-[#0f141c]/60";
+---
+
+<div class={`phone-frame ${className}`}>
+  <div class="bezel">
+    <div class={`screen ${chrome}`}>
+      <!-- status bar -->
+      <div class="relative flex items-center justify-between px-[5%] pt-[3%]">
+        <span class="status-font font-semibold tracking-tight">9:41</span>
+        <div class="absolute left-1/2 top-[34%] h-[3.4%] w-[16%] -translate-x-1/2 rounded-full bg-[#000]">
+          <span class="sr-only">前置摄像头</span>
+        </div>
+        <div class="flex items-center gap-[3%]">
+          <svg viewBox="0 0 16 12" fill="currentColor" class="h-[1.1em] w-auto" aria-hidden="true">
+            <rect x="0" y="7" width="3" height="5" rx="0.6" />
+            <rect x="4.5" y="5" width="3" height="7" rx="0.6" />
+            <rect x="9" y="2.5" width="3" height="9.5" rx="0.6" />
+            <path d="M14.5 0.8a1 1 0 0 1 1 1v8.4a1 1 0 0 1-1 1 1 1 0 0 1-1-1V1.8a1 1 0 0 1 1-1z" opacity="0.35" />
+          </svg>
+          <svg viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" class="h-[1em] w-auto" aria-hidden="true">
+            <path d="M1.5 3.5a13 13 0 0 1 19 0" />
+            <path d="M4.5 6.5a9 9 0 0 1 13 0" />
+            <path d="M7.5 9.4a5 5 0 0 1 7 0" />
+            <circle cx="11" cy="10.6" r="0.7" fill="currentColor" stroke="none" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- screen content -->
+      <div class="relative min-h-0 flex-1">
+        <slot />
+      </div>
+
+      <!-- home indicator -->
+      <div class="flex items-center justify-center pb-[2.2%] pt-[1.4%]">
+        <span class={`h-[0.9%] w-[30%] rounded-full ${homeBar}`}></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @reference "../styles/global.css";
+
+  .phone-frame {
+    position: relative;
+    filter: drop-shadow(0 24px 48px -16px rgba(40, 103, 228, 0.35));
+  }
+
+  .bezel {
+    position: relative;
+    aspect-ratio: 300 / 650;
+    border-radius: 13%;
+    background: linear-gradient(160deg, #23262e 0%, #0a0a0d 55%, #15171c 100%);
+    padding: 2.6%;
+    border: 1px solid var(--color-border-strong);
+  }
+
+  /* side buttons */
+  .phone-frame::before {
+    content: "";
+    position: absolute;
+    left: -2.5%;
+    top: 17%;
+    width: 1.1%;
+    height: 22%;
+    border-radius: 3px;
+    background: var(--color-bg-card);
+  }
+  .phone-frame::after {
+    content: "";
+    position: absolute;
+    left: -2.5%;
+    top: 45%;
+    width: 1.1%;
+    height: 9%;
+    border-radius: 3px;
+    background: var(--color-bg-card);
+  }
+
+  .screen {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border-radius: 11%;
+    overflow: hidden;
+    background: var(--color-app-bg);
+    container-type: inline-size;
+  }
+
+  .screen:has(.mock-app-dark) {
+    background: var(--color-appd-bg);
+  }
+
+  .status-font {
+    font-size: 3cqw;
+  }
+</style>

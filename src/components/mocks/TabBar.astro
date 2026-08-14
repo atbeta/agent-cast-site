@@ -1,0 +1,41 @@
+---
+interface Props {
+  active: "console" | "instances" | "sessions";
+}
+
+const { active } = Astro.props;
+
+const tabs = [
+  { key: "console", label: "控制台", icon: "grid" },
+  { key: "instances", label: "实例", icon: "layers" },
+  { key: "sessions", label: "会话", icon: "chat" },
+] as const;
+---
+
+<div class="mock-tabbar">
+  {tabs.map((t) => (
+    <div class:list={["mock-tab", active === t.key && "mock-tab-active"]}>
+      {t.icon === "grid" && (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-[3.6cqw] w-[3.6cqw]" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" rx="1.5" />
+          <rect x="14" y="3" width="7" height="7" rx="1.5" />
+          <rect x="3" y="14" width="7" height="7" rx="1.5" />
+          <rect x="14" y="14" width="7" height="7" rx="1.5" />
+        </svg>
+      )}
+      {t.icon === "layers" && (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-[3.6cqw] w-[3.6cqw]" aria-hidden="true">
+          <polygon points="12 2 2 7 12 12 22 7 12 2" />
+          <polyline points="2 17 12 22 22 17" />
+          <polyline points="2 12 12 17 22 12" />
+        </svg>
+      )}
+      {t.icon === "chat" && (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-[3.6cqw] w-[3.6cqw]" aria-hidden="true">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+      )}
+      <span>{t.label}</span>
+    </div>
+  ))}
+</div>

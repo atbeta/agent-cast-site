@@ -1,0 +1,56 @@
+---
+/** 深色模式聊天页 mock — 展示 App 深色主题 + Diff 卡片 + 上下文用量 */
+import ChatHeader from "./ChatHeader.astro";
+import ChatInput from "./ChatInput.astro";
+
+const diffLines = [
+  { cls: "add", text: "+ hash: ${{ hashFiles('pnpm-lock.yaml') }}" },
+  { cls: "add", text: "+ key: deps-${{ runner.os }}-${{ hash }}" },
+  { cls: "del", text: "- key: deps-${{ runner.os }}" },
+];
+---
+
+<div class="mock-app mock-app-dark mock-dark">
+  <ChatHeader title="排查 CI 偶发失败" subtitle="CodeBox · 深色模式" />
+
+  <div class="flex min-h-0 flex-1 flex-col gap-[2.4cqw] overflow-hidden px-[3.6cqw] py-[2.6cqw]">
+    <div class="mock-bubble mock-bubble-agent">
+      找到根因：缓存键没把 lockfile 哈希算进去，改了 <span class="font-mono text-[2.7cqw]">ci.yaml</span>。
+    </div>
+
+    <!-- Diff 卡片 -->
+    <div class="mock-toolcard">
+      <div class="mock-toolhead">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-[3cqw] w-[3cqw] text-[var(--color-app-ok)]" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+        ViewDiff · ci.yaml
+        <span class="ml-auto text-[2.5cqw] font-normal text-[var(--color-app-fg-muted)]">+4 −2</span>
+      </div>
+      <div class="mock-toolbody space-y-[0.8cqw]">
+        {diffLines.map((l) => (
+          <div class:list={[
+            "truncate",
+            l.cls === "add" ? "text-[var(--color-app-ok)]" : "text-[var(--color-app-fg-muted)]",
+          ]}>
+            {l.text}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mock-bubble mock-bubble-agent">
+      Diff 已按文件列出，改动收敛在两行。重跑流水线即可验证。
+    </div>
+
+    <!-- 上下文用量 -->
+    <div class="flex items-center gap-[1.6cqw] px-[0.6cqw]">
+      <div class="h-[1.4cqw] flex-1 overflow-hidden rounded-full bg-[var(--color-app-muted)]">
+        <div class="h-full w-[62%] rounded-full bg-[var(--color-app-warn)]"></div>
+      </div>
+      <span class="text-[2.5cqw] text-[var(--color-app-fg-muted)]">上下文 62%</span>
+    </div>
+  </div>
+
+  <ChatInput placeholder="输入消息…" />
+</div>
