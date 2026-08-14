@@ -1,79 +1,84 @@
 ---
-/** 控制台首页 mock：概览卡 + 最近实例 + 进行中任务（HomePage.ets 忠实还原） */
+/** 控制台首页 mock：概览卡 + 最近实例 + 进行中（HomePage.ets 忠实还原） */
 import InstanceRow from "./InstanceRow.astro";
-import SessionCard from "./SessionCard.astro";
 import TabBar from "./TabBar.astro";
 ---
 
-<div class="mock-app px-[4cqw] pb-0 pt-[3cqw]">
+<div class="mock-app px-[5.4cqw] pb-0 pt-[3cqw]">
   <header>
     <p class="mock-pagetitle">控制台</p>
-    <p class="mock-pagesub mt-[0.6cqw]">8 月 15 日 · 周六</p>
+    <p class="mock-pagesub mt-[1cqw]">8 月 15 日 · 周六</p>
   </header>
 
-  <div class="mt-[3cqw] flex flex-col gap-[2.6cqw]">
+  <div class="mt-[3.6cqw] flex flex-col gap-[3.6cqw]">
     <!-- 运行概览 -->
-    <div class="mock-card px-[3.2cqw] py-[2.6cqw]">
-      <div class="flex items-center justify-between">
-        <p class="text-[3.4cqw] font-bold">运行概览</p>
-        <span class="mock-chip mock-chip-idle">
-          <span class="mock-chip-dot"></span>
+    <div class="mock-card px-[4cqw] py-[3.8cqw]">
+      <div class="flex items-center gap-[2.6cqw]">
+        <span class="inline-flex h-[9cqw] w-[9cqw] shrink-0 items-center justify-center rounded-full bg-[#e0ebff]">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-[5cqw] w-[5cqw]" aria-hidden="true">
+            <line x1="5" y1="4" x2="5" y2="20" />
+            <line x1="12" y1="4" x2="12" y2="20" />
+            <line x1="19" y1="4" x2="19" y2="20" />
+            <line x1="3" y1="8" x2="6" y2="8" />
+            <line x1="3" y1="12" x2="6" y2="12" />
+            <line x1="3" y1="16" x2="6" y2="16" />
+            <line x1="10" y1="8" x2="13" y2="8" />
+            <line x1="10" y1="12" x2="13" y2="12" />
+            <line x1="10" y1="16" x2="13" y2="16" />
+            <line x1="17" y1="8" x2="20" y2="8" />
+            <line x1="17" y1="12" x2="20" y2="12" />
+            <line x1="17" y1="16" x2="20" y2="16" />
+          </svg>
+        </span>
+        <p class="flex-1 text-[3.6cqw] font-extrabold">运行概览</p>
+        <span class="flex shrink-0 items-center gap-[1cqw] text-[2.7cqw] font-semibold text-[var(--color-app-ok)]">
+          <span class="inline-block h-[1.6cqw] w-[1.6cqw] rounded-full bg-[var(--color-app-ok)]"></span>
           已同步
         </span>
       </div>
-      <div class="mt-[2.4cqw] flex gap-[4cqw]">
+      <div class="mt-[3.4cqw] flex gap-[7cqw]">
         <div>
-          <p class="font-mono text-[9cqw] font-bold leading-none">2</p>
-          <p class="mt-[1cqw] text-[2.7cqw] text-[var(--color-app-fg-muted)]">共 3 个实例 · 2 在线</p>
+          <p class="font-mono text-[10cqw] font-extrabold leading-none">3</p>
+          <p class="mt-[1.6cqw] text-[2.7cqw] text-[var(--color-app-fg-muted)]">共 3 个实例 · 3 在线</p>
         </div>
         <div>
-          <p class="font-mono text-[9cqw] font-bold leading-none">3</p>
-          <p class="mt-[1cqw] text-[2.7cqw] text-[var(--color-app-fg-muted)]">进行中的任务</p>
+          <p class="font-mono text-[10cqw] font-extrabold leading-none">0</p>
+          <p class="mt-[1.6cqw] text-[2.7cqw] text-[var(--color-app-fg-muted)]">进行中的任务</p>
         </div>
       </div>
     </div>
 
     <!-- 最近实例 -->
     <section>
-      <div class="mb-[1.8cqw] flex items-center justify-between">
+      <div class="mb-[2.2cqw] flex items-center justify-between">
         <p class="mock-sectiontitle">最近实例</p>
-        <p class="mock-sectionaction">查看全部 →</p>
+        <p class="mock-sectionaction">查看全部 ›</p>
       </div>
       <div class="mock-card overflow-hidden">
-        <InstanceRow name="我的 Hermes" kind="hermes" status="在线 · 12ms" />
-        <InstanceRow name="CodeBox" kind="opencode" status="在线 · 34ms" />
+        <InstanceRow name="OpenCode" kind="opencode" status="172ms" />
+        <InstanceRow name="OpenClaw" kind="openclaw" status="1ms" />
       </div>
     </section>
 
-    <!-- 进行中 -->
+    <!-- 进行中：空状态 -->
     <section>
-      <div class="mb-[1.8cqw] flex items-center justify-between">
+      <div class="mb-[2.2cqw] flex items-center justify-between">
         <p class="mock-sectiontitle">进行中</p>
-        <p class="mock-sectionaction">全部会话 →</p>
+        <p class="mock-sectionaction">全部会话 ›</p>
       </div>
-      <div class="flex flex-col gap-[2cqw]">
-        <SessionCard
-          title="重构 UI 组件层"
-          chip="执行中"
-          chipCls="running"
-          agentName="我的 Hermes"
-          agentKind="hermes"
-          stage="FileEdit"
-          ago="2 分钟前"
-        />
-        <SessionCard
-          title="等待我审批的改动"
-          chip="待审批"
-          chipCls="awaiting"
-          agentName="CodeBox"
-          agentKind="opencode"
-          stage="正在执行"
-          ago="刚刚"
-        />
+      <div class="mock-card flex flex-col items-center px-[4cqw] py-[8cqw] text-center">
+        <span class="inline-flex h-[18cqw] w-[18cqw] items-center justify-center rounded-full bg-[#e0ebff]">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-[10cqw] w-[10cqw]" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <polyline points="12 7 12 12 16 14" />
+          </svg>
+        </span>
+        <p class="mt-[3.6cqw] text-[3.6cqw] font-extrabold">还没有进行中的任务</p>
+        <p class="mt-[1.6cqw] text-[3cqw] text-[#9ca3af]">开始一个会话,遥控你的 Agent 干活</p>
       </div>
     </section>
   </div>
 
-  <div class="min-h-[2.4cqw] flex-1"></div>
+  <div class="min-h-[1.6cqw] flex-1"></div>
   <TabBar active="console" />
 </div>

@@ -19,5 +19,8 @@
     "tailwindcss": "^4.1.0",
     "typescript": "^5.7.2"
   },
-  "packageManager": "pnpm@10.15.0"
+  "packageManager": "pnpm@10.15.0",
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
 }

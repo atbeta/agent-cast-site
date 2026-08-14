@@ -15,10 +15,11 @@ const { name, kind = "generic", avatarLabel = "", status } = Astro.props;
 <div class="flex items-center gap-[2.4cqw] border-b border-[var(--color-app-border)] px-[3cqw] py-[2.4cqw] last:border-0">
   <MockAvatar kind={kind} label={avatarLabel || name.slice(0, 1)} size="10cqw" />
   <div class="min-w-0 flex-1">
-    <p class="truncate text-[3.4cqw] font-bold">{name}</p>
-    <p class="mt-[0.8cqw] flex items-center gap-[1cqw] text-[2.7cqw] text-[var(--color-app-fg-muted)]">
-      <span class="inline-block h-[1.4cqw] w-[1.4cqw] rounded-full bg-[var(--color-app-ok)]"></span>
-      {status}
+    <p class="truncate text-[3.6cqw] font-extrabold">{name}</p>
+    <p class="mt-[0.6cqw] flex items-center gap-[1.2cqw] text-[2.7cqw] text-[var(--color-app-fg-muted)]">
+      <span class="inline-block h-[1.6cqw] w-[1.6cqw] rounded-full bg-[var(--color-app-ok)]"></span>
+      <span class="font-semibold text-[var(--color-app-ok)]">在线</span>
+      <span>· {status.replace(/^在线\s*·\s*/, "")}</span>
     </p>
   </div>
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" class="h-[3.4cqw] w-[3.4cqw] shrink-0 text-[var(--color-app-fg-subtle)]" aria-hidden="true">
