@@ -31,18 +31,18 @@
 
   /* ---- App-screen mockup palette (faithful to the app's color.json) ---- */
   /* Light */
-  --color-app-bg: #f5f5f7;
+  --color-app-bg: #f2f2f7;
   --color-app-surface: #ffffff;
   --color-app-muted: #eceff3;
   --color-app-border: #e3e7eb;
-  --color-app-fg: #0f141c;
-  --color-app-fg-muted: #5f6b7a;
+  --color-app-fg: #1c1c1e;
+  --color-app-fg-muted: #6b7280;
   --color-app-fg-subtle: #8b929c;
   --color-app-control: #f4f6f8;
   --color-app-brand: #2867e4;
   --color-app-bubble-user: #e7f0ff;
   --color-app-bubble-agent: #f0f0f0;
-  --color-app-ok: #00a159;
+  --color-app-ok: #00a968;
   --color-app-warn: #da950a;
   --color-app-danger: #e1232f;
   /* Dark */
@@ -287,8 +287,8 @@
   .mock-card {
     background: var(--color-app-surface);
     border-radius: 4.5cqw;
-    border: 0.5px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    border: 0.5px solid rgba(0, 0, 50, 0.04);
+    box-shadow: 0 1px 2px rgba(0, 10, 50, 0.04), 0 0 0 0.5px rgba(0, 0, 0, 0.02);
   }
 
   /* status chip */
@@ -479,6 +479,7 @@
     border-top: 1px solid rgba(0, 0, 0, 0.06);
     font-size: 2.5cqw;
     color: var(--color-app-fg-muted);
+    font-family: "Noto Sans SC", var(--font-sans);
   }
   .mock-tab {
     display: flex;
@@ -489,11 +490,13 @@
   .mock-tab-active {
     color: var(--color-app-brand);
   }
-  .mock-tab svg [stroke] {
-    stroke-width: 1.6;
+  .mock-tab-active svg path,
+  .mock-tab-active svg rect,
+  .mock-tab-active svg g {
+    fill-opacity: 0.28;
   }
-  .mock-tab-active svg [stroke] {
-    stroke-width: 2;
+  .mock-tab svg {
+    stroke-linecap: round;
   }
 
   /* chat nav header */

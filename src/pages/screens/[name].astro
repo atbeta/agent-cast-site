@@ -47,8 +47,14 @@ const chrome = onDark ? "#e6ebf2" : "#0f141c";
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content={onDark ? "#0e1014" : "#eef1f5"} />
     <title>screen · {name}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+    />
   </head>
-  <body style={`background:${onDark ? "#0e1014" : "#eef1f5"};color:${chrome};margin:0;height:100vh;overflow:hidden;`}>
+  <body style={`background:${onDark ? "#0e1014" : "#eef1f5"};color:${chrome};margin:0;height:100vh;overflow:hidden;font-family:"Noto Sans SC",var(--font-sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;`}>
     <div class="phone-render">
       <div class="status-bar">
         <div class="status-left">
@@ -74,6 +80,10 @@ const chrome = onDark ? "#e6ebf2" : "#0f141c";
             <path d="M6 9a4 4 0 0 1 4 0" />
             <circle cx="8" cy="10.8" r="0.7" fill="currentColor" stroke="none" />
           </svg>
+          <span class="status-speed">
+            <span class="status-speed-num">6.9</span>
+            <span class="status-speed-unit">K/s</span>
+          </span>
           <span class="status-batt-wrap">
             <svg viewBox="0 0 30 14" class="status-batt" aria-hidden="true">
               <rect x="0.6" y="0.6" width="26" height="12.8" rx="3" fill="none" stroke="currentColor" stroke-width="1.2" />
@@ -127,8 +137,9 @@ const chrome = onDark ? "#e6ebf2" : "#0f141c";
     font-size: 3.4cqw;
     font-weight: 700;
     letter-spacing: -0.01em;
-    font-family: var(--font-sans);
+    font-family: "Noto Sans SC", var(--font-sans);
     color: inherit;
+    font-feature-settings: "tnum";
   }
 
   .status-pill {
@@ -160,12 +171,32 @@ const chrome = onDark ? "#e6ebf2" : "#0f141c";
   .status-icons {
     display: flex;
     align-items: center;
-    gap: 2.8%;
+    gap: 2.6%;
   }
 
   .status-ico {
     height: 1.15em;
     width: auto;
+  }
+
+  .status-speed {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5cqw;
+    margin: 0 0.5cqw;
+    font-family: "Noto Sans SC", var(--font-sans);
+    color: inherit;
+  }
+  .status-speed-num {
+    font-size: 2.6cqw;
+    font-weight: 700;
+    font-feature-settings: "tnum";
+    letter-spacing: -0.01em;
+  }
+  .status-speed-unit {
+    font-size: 2.2cqw;
+    font-weight: 600;
+    letter-spacing: -0.01em;
   }
 
   .status-batt-wrap {
